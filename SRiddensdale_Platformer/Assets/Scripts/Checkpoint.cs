@@ -15,8 +15,9 @@ public class Checkpoint : MonoBehaviour
 
     private void SetCheckpoint()
     {
-        if (!checkpointActive) return;
+        if (checkpointActive) return;
 
+        // record the checkpoint in the game manager and set the active flag
         GameManager.Instance.SetCheckpoint(transform.position);
         checkpointActive = true;
     }
