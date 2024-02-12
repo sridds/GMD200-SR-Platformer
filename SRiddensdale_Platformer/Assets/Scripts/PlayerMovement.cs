@@ -3,6 +3,12 @@ using System.Collections;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public enum Direction
+    {
+        Left = -1,
+        Right = 1
+    }
+
     private Rigidbody2D rb;
 
     [Header("Modifiers")]
@@ -49,6 +55,8 @@ public class PlayerMovement : MonoBehaviour
     private bool enteredAirFlag;
     private bool gravityCoroutineFinished;
 
+    private Direction direction;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -78,6 +86,8 @@ public class PlayerMovement : MonoBehaviour
         jumpQueued = false;
     }
 
+    float lastXInput = 0.0f;
+
     /// <summary>
     /// Retrieves necessary inputs for movement calculations
     /// </summary>
@@ -85,6 +95,11 @@ public class PlayerMovement : MonoBehaviour
     {
         // get axis inputs
         xInput = Input.GetAxisRaw("Horizontal");
+
+        if (xInput != 0) lastXInput = xInput;
+
+        // set direction based on the non 0 last x input
+        direction = (Direction)((int)Mathf.Sign(lastXInput));
     }
 
     private void TryQueueJump()
@@ -166,4 +181,6 @@ public class PlayerMovement : MonoBehaviour
         activeGravityCoroutine = null;
         gravityCoroutineFinished = true;
     }
+
+    public Direction GetDirection() => direction;
 }

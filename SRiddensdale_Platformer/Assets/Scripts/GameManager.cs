@@ -31,27 +31,27 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this);
     }
 
-    private void Start()
-    {
-        RespawnAtCheckpoint();
-    }
-
     private void OnSceneRestart() => RespawnAtCheckpoint();
 
+    /// <summary>
+    /// Respawns the player at the current active checkpoint
+    /// </summary>
     private void RespawnAtCheckpoint()
     {
+        // if theres no checkpoint to spawn at, dont bother
+        if (!CheckpointSaved) return;
         LocalPlayer.transform.position = savedPosition;
     }
 
     public void SetCheckpoint(Vector3 point)
     {
         savedPosition = point;
-
         CheckpointSaved = true;
     }
 
     private void Update()
     {
+        // for debugging
         if (Input.GetKeyDown(KeyCode.R))
         {
             StartCoroutine(RestartScene());
