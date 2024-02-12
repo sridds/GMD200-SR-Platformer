@@ -10,10 +10,15 @@ public class PlayerAnimation : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     [SerializeField]
     private bool flipX;
+    [SerializeField]
+    private Animator animator;
 
     private void Awake()
     {
         movement = FindObjectOfType<PlayerMovement>();
+
+        movement.OnJump += CallJump;
+        movement.OnLand += CallLand;
     }
 
     private void Update()
@@ -22,5 +27,16 @@ public class PlayerAnimation : MonoBehaviour
 
         if(dir == PlayerMovement.Direction.Left) spriteRenderer.flipX = flipX ? true : false;
         else spriteRenderer.flipX = flipX ? false : true;
+
+        if(movement.IsMoving && movement.IsGrounded()) {
+            animator.SetBool("Walking", true);
+        }
+        else {
+            animator.SetBool("Walking", false);
+        }
     }
+
+    private void CallJump() => animator.SetTrigger("Jump");
+
+    private void CallLand() => animator.SetTrigger("Land");
 }

@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using static PlayerMovement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -54,8 +55,18 @@ public class PlayerMovement : MonoBehaviour
     private Coroutine activeGravityCoroutine;
     private bool enteredAirFlag;
     private bool gravityCoroutineFinished;
-
     private Direction direction;
+
+    // events
+    public delegate void Jump();
+    public Jump OnJump;
+
+    public delegate void Land();
+    public Land OnLand;
+
+    // accessors
+    public bool IsMoving { get; private set; }
+
 
     private void Start()
     {
@@ -67,6 +78,9 @@ public class PlayerMovement : MonoBehaviour
         GetInput();
         TryQueueJump();
         UpdateGravity();
+
+        // Set moving variable
+        IsMoving = xInput != 0;
     }
 
     private void FixedUpdate()
@@ -81,6 +95,7 @@ public class PlayerMovement : MonoBehaviour
     {
         // directly set player velocity
         rb.velocity = new Vector2(rb.velocity.x, _playerJumpHeight);
+        OnJump?.Invoke();
 
         // set flag
         jumpQueued = false;
@@ -121,6 +136,8 @@ public class PlayerMovement : MonoBehaviour
         if(Input.GetKeyUp(KeyCode.Z) && rb.velocity.y > 0f) coyoteTimeCounter = 0f;
     }
 
+    bool groundFlag = false;
+
     /// <summary>
     /// Returns whether or not the player is grounded
     /// </summary>
@@ -129,8 +146,19 @@ public class PlayerMovement : MonoBehaviour
         Collider2D col = Physics2D.OverlapCircle((Vector2)transform.position + _groundCheckOffset, _groundCheckRadius, _groundCheckMask);
 
         // return true if a collider was found, otherwise, return false.
-        if (col != null) return true;
-        return false;
+        if (col != null) {
+
+            // the ground flag handles calling the land event only once.
+            if (!groundFlag) OnLand?.Invoke();
+            groundFlag = true;
+
+            return true;
+        }
+        else {
+            groundFlag = false;
+            return false;
+        }
+
     }
 
     /// <summary>
