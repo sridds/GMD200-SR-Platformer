@@ -30,7 +30,7 @@ public class MovingPlatform : MonoBehaviour
         Vector2 initial = transform.position;
         Vector2 target = currentPoint.position;
 
-        while(elapsed < duration)
+        while (elapsed < duration)
         {
             elapsed += Time.deltaTime;
             transform.position = Vector2.Lerp(initial, target, elapsed / duration);
@@ -45,20 +45,5 @@ public class MovingPlatform : MonoBehaviour
         currentPoint = _movePoints[pointIndex];
 
         activeMoveCoroutine = null;
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag != "Player") return;
-        Debug.DrawRay(transform.position, collision.GetContact(0).normal, Color.green, 5.0f);
-
-        collision.gameObject.transform.parent = gameObject.transform;
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag != "Player") return;
-
-        collision.gameObject.transform.parent = null;
     }
 }

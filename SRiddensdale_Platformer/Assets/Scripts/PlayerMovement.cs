@@ -211,4 +211,20 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public Direction GetDirection() => direction;
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        // wont be able to set to platform if normal is incorrect
+        if (collision.gameObject.tag != "Platform" || collision.contacts[0].normal != Vector2.up) return;
+
+        transform.SetParent(collision.transform);
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag != "Platform") return;
+
+        transform.SetParent(null);
+    }
 }
+
