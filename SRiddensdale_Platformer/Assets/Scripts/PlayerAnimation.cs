@@ -28,11 +28,11 @@ public class PlayerAnimation : MonoBehaviour
         if(dir == PlayerMovement.Direction.Left) spriteRenderer.flipX = flipX ? true : false;
         else spriteRenderer.flipX = flipX ? false : true;
 
-        if(movement.IsMoving && movement.IsGrounded()) {
-            animator.SetBool("Walking", true);
+        if(movement.IsGrounded()) {
+            animator.SetFloat("MoveSpeedX", Mathf.Abs(movement.MyBody.velocity.x));
         }
         else {
-            animator.SetBool("Walking", false);
+            animator.SetFloat("MoveSpeedX", 0.0f);
         }
     }
 

@@ -66,6 +66,7 @@ public class PlayerMovement : MonoBehaviour
 
     // accessors
     public bool IsMoving { get; private set; }
+    public Rigidbody2D MyBody { get { return rb; } }
 
 
     private void Start()
