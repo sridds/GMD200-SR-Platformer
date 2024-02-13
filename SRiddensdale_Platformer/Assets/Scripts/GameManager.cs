@@ -52,16 +52,10 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         // for debugging
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            StartCoroutine(RestartScene());
-        }
+        if (Input.GetKeyDown(KeyCode.R)) RestartLevel();
     }
 
-    private void RestartLevel()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
+    public void RestartLevel() => StartCoroutine(RestartScene());
 
     private IEnumerator RestartScene()
     {
