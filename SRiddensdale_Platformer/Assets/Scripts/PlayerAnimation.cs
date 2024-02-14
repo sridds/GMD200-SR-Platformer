@@ -29,7 +29,7 @@ public class PlayerAnimation : MonoBehaviour
         else spriteRenderer.flipX = flipX ? false : true;
 
         if(movement.IsGrounded()) {
-            animator.SetFloat("MoveSpeedX", Mathf.Abs(movement.MyBody.velocity.x));
+            animator.SetFloat("MoveSpeedX", Mathf.Abs(movement.MyBody.velocity.x) / movement.TopSpeed);
         }
         else {
             animator.SetFloat("MoveSpeedX", 0.0f);

@@ -67,6 +67,10 @@ public class PlayerMovement : MonoBehaviour
     // accessors
     public bool IsMoving { get; private set; }
     public Rigidbody2D MyBody { get { return rb; } }
+    public float TopSpeed { get { return _playerSpeed; } }
+
+    bool inputFrozen = false;
+    bool playerFrozen = false;
 
 
     private void Start()
@@ -109,6 +113,8 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private void GetInput()
     {
+        if (inputFrozen) return;
+
         // get axis inputs
         xInput = Input.GetAxisRaw("Horizontal");
 
@@ -226,6 +232,15 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.tag != "Platform") return;
 
         transform.SetParent(null);
+    }
+
+    public void FreezeInput(bool frozen) => inputFrozen = frozen;
+    public void FreezePlayer(bool frozen)
+    {
+        playerFrozen = frozen;
+
+        if (playerFrozen) rb.isKinematic = true;
+        else  rb.isKinematic = false;
     }
 }
 
