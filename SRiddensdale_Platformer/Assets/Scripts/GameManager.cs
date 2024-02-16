@@ -5,6 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public enum GameState
+    {
+        Playing,
+        Paused
+    }
+
     // Instance reference
     public static GameManager Instance { get { return instance; } }
     private static GameManager instance;
@@ -17,6 +23,11 @@ public class GameManager : MonoBehaviour
     public bool CheckpointSaved { get; private set; }
     public Vector3 SavedPosition { get { return savedPosition; } }
     public Player LocalPlayer { get { if (player == null) player = FindObjectOfType<Player>(); return player; } }
+    public GameState CurrentGameState { get; private set; }
+
+    // delegates
+    public delegate void GameStateChanged(GameState state);
+    public GameStateChanged OnGameStateChanged;
 
     private void Awake() {
         // create an instance of the game manager
@@ -67,5 +78,59 @@ public class GameManager : MonoBehaviour
         }
 
         OnSceneRestart();
+    }
+
+    /// <summary>
+    /// calls the lerp time scale coroutine to lerp timeScale over a period lerpTime
+    /// </summary>
+    /// <param name="timeScale"></param>
+    /// <param name="lerpTime"></param>
+    public void SetTimeScale(float timeScale, float lerpTime)
+    {
+        StopAllCoroutines();
+        StartCoroutine(LerpTimeScale(timeScale, lerpTime));
+    }
+
+    /// <summary>
+    /// Instantly sets time scale. This may seem redundant but I want the game manager to handle this in case pausing ever gets implemented
+    /// </summary>
+    /// <param name="timeScale"></param>
+    public void SetTimeScaleInstant(float timeScale)
+    {
+        if (CurrentGameState == GameState.Paused) return;
+        Time.timeScale = timeScale;
+    }
+
+    /// <summary>
+    /// Responsible for lerping the time scale to the passed timeScale variable over a period defined by lerpTime
+    /// </summary>
+    /// <param name="timeScale"></param>
+    /// <param name="lerpTime"></param>
+    /// <returns></returns>
+    private IEnumerator LerpTimeScale(float timeScale, float lerpTime)
+    {
+        float elapsedTime = 0.0f;
+        float initialTimeScale = Time.timeScale;
+
+        while (elapsedTime < lerpTime)
+        {
+            if (CurrentGameState == GameState.Paused)
+            {
+                // ensure the timescale is 0 while paused
+                Time.timeScale = 0.0f;
+                yield return null;
+            }
+            else
+            {
+                // adjust the time scale, ensure that elapsed time uses unscaled time since we are directly modifying the time scale
+                Time.timeScale = Mathf.Lerp(initialTimeScale, timeScale, elapsedTime / lerpTime);
+                elapsedTime += Time.unscaledDeltaTime;
+
+                yield return null;
+            }
+        }
+
+        // just in case it overshoots or undershoots
+        Time.timeScale = timeScale;
     }
 }
