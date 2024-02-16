@@ -6,7 +6,7 @@ using System;
 /// Followed a fantastic tutorial by git-amend
 /// https://www.youtube.com/watch?v=NnH6ZK5jt7o&ab_channel=git-amend
 /// </summary>
-public class StateMachine : MonoBehaviour
+public abstract class StateMachine : MonoBehaviour
 {
     StateNode current;
     Dictionary<Type, StateNode> nodes = new();

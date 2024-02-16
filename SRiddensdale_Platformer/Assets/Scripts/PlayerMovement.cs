@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections;
-using static PlayerMovement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -15,6 +14,12 @@ public class PlayerMovement : MonoBehaviour
     [Header("Modifiers")]
     [SerializeField]
     private float _playerSpeed;
+    [SerializeField]
+    private float _machTier1Speed;
+    [SerializeField]
+    private float _machTier2Speed;
+    [SerializeField]
+    private float _machTier3Speed;
 
     [Header("Jump")]
     [SerializeField]
