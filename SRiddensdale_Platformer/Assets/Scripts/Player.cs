@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [Header("Bubble")]
     [SerializeField]
     private float hanklingBubbleTimer = 10.0f;
+
+    [Header("RPG")]
 
     private Hankling myHankling;
     private Health myHealth;
@@ -13,6 +16,7 @@ public class Player : MonoBehaviour
     // accessors
     public Hankling MyHankling { get { if (myHankling == null) myHankling = FindObjectOfType<Hankling>(); return myHankling; } }
     public bool IsHanklingBubbled { get; private set; }
+    public bool IsInRPGState { get; private set; }
 
     Timer activeHanklingTimer;
 
