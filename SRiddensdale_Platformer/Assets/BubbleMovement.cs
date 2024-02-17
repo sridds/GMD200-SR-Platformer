@@ -33,10 +33,17 @@ public class BubbleMovement : MonoBehaviour
     private void Update()
     {
         timer += Time.deltaTime;
+
+        if (GameManager.Instance.IsGameOver)
+        {
+            rb.isKinematic = true;
+            transform.position = new Vector2(transform.position.x + Mathf.Cos(Time.unscaledTime * 6.0f) * Time.unscaledDeltaTime * 2.0f, transform.position.y + Mathf.Sin(Time.unscaledTime * 7.0f) * Time.unscaledDeltaTime * 2.0f);
+        }
     }
 
     float minY = 0.0f;
     float velY = 0.0f;
+
     Vector2 targetNoise;
     Vector2 noiseVel;
     Vector2 smoothedNoise;
@@ -47,12 +54,13 @@ public class BubbleMovement : MonoBehaviour
         if (hit.collider != null) minY = hit.point.y;
 
         // calculate y
-        float y = minY + _minDistanceAboveGround + Mathf.Sin(Time.time * (_maxDistanceAboveGround - _minDistanceAboveGround)) * _sinFrequency;
+        float y = minY + _minDistanceAboveGround + Mathf.Sin(Time.time * (_maxDistanceAboveGround - _minDistanceAboveGround)) * _sinFrequency * Time.deltaTime;
         smoothedNoise = Vector2.SmoothDamp(smoothedNoise, targetNoise, ref noiseVel, _noiseSmoothing);
         transform.position = new Vector2(transform.position.x + smoothedNoise.x, Mathf.SmoothDamp(transform.position.y, y, ref velY, _ySmoothing) + smoothedNoise.y);
 
         // choose new target noise
-        if(timer >= _bubbleNoiseFrequency) {
+        if (timer >= _bubbleNoiseFrequency)
+        {
             targetNoise = (Random.insideUnitCircle * _bubbleNoiseAmplitude) * Time.fixedDeltaTime;
             timer = 0.0f;
         }

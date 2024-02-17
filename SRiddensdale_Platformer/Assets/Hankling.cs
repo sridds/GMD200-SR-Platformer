@@ -31,6 +31,12 @@ public class Hankling : MonoBehaviour
     [SerializeField]
     private float _returnToPlayerTime = 1.0f;
 
+    [Header("SFX")]
+    [SerializeField]
+    private AudioData _bubblePopSound;
+    [SerializeField]
+    private AudioSource _cryingSound;
+
     Vector2 vel;
 
     // events
@@ -48,12 +54,37 @@ public class Hankling : MonoBehaviour
 
         // subscribe to events
         _bubble.OnBubbleTriggered += ExitBubble;
+        GameManager.Instance.OnGameOver += EndCrying;
+    }
+
+    public void EndCrying() => StartCoroutine(IEndCrying());
+
+    private IEnumerator IEndCrying()
+    {
+        yield return new WaitForSecondsRealtime(2);
+
+        float elapsed = 0.0f;
+        float duration = 5.0f;
+        float initial = _cryingSound.volume;
+        float target = 0.0f;
+
+        while(elapsed < duration)
+        {
+            elapsed += Time.unscaledDeltaTime;
+            _cryingSound.volume = Mathf.Lerp(initial, target, elapsed / duration);
+
+            yield return null;
+        }
+
+        _cryingSound.volume = target;
+
     }
 
     public void EnterBubble()
     {
         _bubble.transform.position = transform.position;
         _bubble.gameObject.SetActive(true);
+        _cryingSound.Play();
         myState = State.Bubble;
 
         OnBubbleEnter?.Invoke();
@@ -63,7 +94,9 @@ public class Hankling : MonoBehaviour
     {
         if (bubbleActiveTime < _allowPopAfterSeconds) return;
         _bubble.gameObject.SetActive(false);
+        _cryingSound.Stop();
 
+        AudioHandler.instance.ProcessAudioData(_bubblePopSound);
         OnBubblePopped?.Invoke();
         StartCoroutine(ReturnToPlayer());
     }
