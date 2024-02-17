@@ -52,6 +52,7 @@ public class Hankling : MonoBehaviour
 
     public void EnterBubble()
     {
+        _bubble.transform.position = transform.position;
         _bubble.gameObject.SetActive(true);
         myState = State.Bubble;
 
@@ -81,6 +82,9 @@ public class Hankling : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Handles the state while being carried
+    /// </summary>
     private void HandleCarriedState()
     {
         bubbleActiveTime = 0.0f;
@@ -91,11 +95,20 @@ public class Hankling : MonoBehaviour
         transform.position = new Vector2(target.x, transform.position.y);
     }
 
+    /// <summary>
+    /// Handles the state while in a bubble
+    /// </summary>
     private void HandleBubbleState()
     {
         bubbleActiveTime += Time.deltaTime;
+
+        transform.position = _bubble.transform.position;
     }
 
+    /// <summary>
+    /// Returns the hankling to the player
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator ReturnToPlayer()
     {
         GameManager.Instance.SetTimeScale(0.0f, _freezeTime);
@@ -115,8 +128,10 @@ public class Hankling : MonoBehaviour
             yield return null;
         }
 
+        myState = State.Carried;
         yield return null;
         GameManager.Instance.SetTimeScale(1.0f, 0.3f);
-        myState = State.Carried;
+        
+        transform.position = target;
     }
 }
