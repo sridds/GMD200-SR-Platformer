@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b0cbe83c82e4b42ad849c5e85b71261f
+guid: 892bedbfb4ce14c769150f560a5b5eda
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,400 +123,358 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: hank2_0
+      name: explosion_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 224
-        width: 32
-        height: 32
+        x: 1
+        y: 203
+        width: 71
+        height: 100
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c0d42d27197424b3eabf82c5a0865ef5
-      internalID: 508893265
+      spriteID: 304b83fac36b74eedba99de58dc53829
+      internalID: 998213282
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hank2_1
+      name: explosion_1
       rect:
         serializedVersion: 2
-        x: 32
-        y: 240
-        width: 16
-        height: 16
+        x: 73
+        y: 203
+        width: 71
+        height: 100
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 82f35d28df58e4344a75af7490288dad
-      internalID: -451712552
+      spriteID: cb6103eb6450a4855af00781f054aa4d
+      internalID: 1663427892
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hank2_2
+      name: explosion_2
       rect:
         serializedVersion: 2
-        x: 48
-        y: 240
-        width: 16
-        height: 16
+        x: 145
+        y: 203
+        width: 71
+        height: 100
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b5d71e02ee94e4ba69cf7859acf0b77a
-      internalID: -1063937691
+      spriteID: b23ec4013e46a438e84a5ae92bf727de
+      internalID: 1672359576
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hank2_3
+      name: explosion_3
       rect:
         serializedVersion: 2
-        x: 64
-        y: 240
-        width: 16
-        height: 16
+        x: 217
+        y: 203
+        width: 71
+        height: 100
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3e4d50914e2dd40e9ae455164ce7370c
-      internalID: -1416223982
+      spriteID: a24085d882db64ac891115b3ca0f5107
+      internalID: 1067181822
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hank2_4
+      name: explosion_4
       rect:
         serializedVersion: 2
-        x: 80
-        y: 224
-        width: 32
-        height: 32
+        x: 289
+        y: 203
+        width: 71
+        height: 100
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cf730b4c7ce504c25839c505a1333ae5
-      internalID: -447036904
+      spriteID: 58633ea3fe4274964a7735456dfd7fa0
+      internalID: -1544620772
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hank2_5
+      name: explosion_5
       rect:
         serializedVersion: 2
-        x: 0
-        y: 192
-        width: 32
-        height: 32
+        x: 361
+        y: 203
+        width: 71
+        height: 100
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3bed7e91a718649919e6623ec97e795b
-      internalID: -326750300
+      spriteID: 4d724fda9b66e42c1856373f7f766197
+      internalID: 1674790031
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hank2_6
+      name: explosion_6
       rect:
         serializedVersion: 2
-        x: 32
-        y: 192
-        width: 32
-        height: 32
+        x: 361
+        y: 102
+        width: 71
+        height: 100
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b026f6d0c6ed04525ab25801d58164cd
-      internalID: 1568774631
+      spriteID: efceaba423284426c949a0303c46bda2
+      internalID: -2138294341
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hank2_7
+      name: explosion_7
       rect:
         serializedVersion: 2
-        x: 112
-        y: 224
-        width: 32
-        height: 32
+        x: 289
+        y: 102
+        width: 71
+        height: 100
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5adfb7f2d3c9046e3a16aa09651f2d4a
-      internalID: -242805611
+      spriteID: 61b4a4d6dbd814fa58dc13e1497220c5
+      internalID: -2058551090
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hank2_8
+      name: explosion_8
       rect:
         serializedVersion: 2
-        x: 112
-        y: 192
-        width: 32
-        height: 32
+        x: 217
+        y: 102
+        width: 71
+        height: 100
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d247a50cb567940459ddc0671f82bd05
-      internalID: -2032960638
+      spriteID: 8e257524f3197483cad1c768d92ae393
+      internalID: -782541210
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hank2_9
+      name: explosion_9
       rect:
         serializedVersion: 2
-        x: 144
-        y: 192
-        width: 32
-        height: 32
+        x: 145
+        y: 102
+        width: 71
+        height: 100
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 94e094424ba9f42179ab1404fc030741
-      internalID: 1001798941
+      spriteID: 0c90b30e391d74c31ad32766c2d1ba08
+      internalID: 1047647538
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hank2_10
+      name: explosion_10
       rect:
         serializedVersion: 2
-        x: 176
-        y: 192
-        width: 32
-        height: 32
+        x: 73
+        y: 102
+        width: 71
+        height: 100
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3fb825bb16c1e4357be15fc062ba2512
-      internalID: -205020077
+      spriteID: fd96fe7afb1d34e12a99431b549d6637
+      internalID: -1168726525
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hank2_11
+      name: explosion_11
       rect:
         serializedVersion: 2
-        x: 208
-        y: 192
-        width: 32
-        height: 32
+        x: 1
+        y: 102
+        width: 71
+        height: 100
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a35b7f8d07db64bd99633b7232a10b35
-      internalID: 1215046788
+      spriteID: 73e261b686d6848b98ae7aaaec741af8
+      internalID: -997240136
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hank2_12
+      name: explosion_12
       rect:
         serializedVersion: 2
-        x: 208
-        y: 224
-        width: 32
-        height: 32
+        x: 1
+        y: 1
+        width: 71
+        height: 100
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 94b901dc5f7d24e94a8cb43032b6358d
-      internalID: 1989581879
+      spriteID: 910a96cb6c3144a519c971a4aa39aefd
+      internalID: 1778260756
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hank2_13
+      name: explosion_13
       rect:
         serializedVersion: 2
-        x: 176
-        y: 224
-        width: 32
-        height: 32
+        x: 73
+        y: 1
+        width: 71
+        height: 100
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7a486dceb68da45c18826716e1e8dfe1
-      internalID: 844821251
+      spriteID: 241006bb97569485ca6c6e59fc471bc6
+      internalID: -653647200
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hank2_14
+      name: explosion_14
       rect:
         serializedVersion: 2
-        x: 144
-        y: 224
-        width: 32
-        height: 32
+        x: 145
+        y: 1
+        width: 71
+        height: 100
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d7140cc5ac37348fdb64f5a7686801a7
-      internalID: 1454387140
+      spriteID: 6a816c48dac7b4db4b8d7e0f35f27517
+      internalID: 1754234212
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hank2_15
+      name: explosion_15
       rect:
         serializedVersion: 2
-        x: 80
-        y: 192
-        width: 32
-        height: 32
+        x: 217
+        y: 1
+        width: 71
+        height: 100
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 99c007147fbdf4d109d25a0997721201
-      internalID: -1667087701
+      spriteID: bbfa820f977aa47abaf491f95be7d98b
+      internalID: 708828948
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hank2_16
+      name: explosion_16
       rect:
         serializedVersion: 2
-        x: 72
-        y: 224
-        width: 8
-        height: 16
+        x: 289
+        y: 1
+        width: 71
+        height: 100
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 984b5d368a18b4ca48b9dfef30e5945b
-      internalID: -1540202342
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: hank2_17
-      rect:
-        serializedVersion: 2
-        x: 112
-        y: 160
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1daeead10abcf42c5b76b4f0f0c80daa
-      internalID: 338834355
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: hank2_18
-      rect:
-        serializedVersion: 2
-        x: 144
-        y: 160
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 34c56bf04bee044ab9545c1b17cd4e0f
-      internalID: -1682772915
+      spriteID: 5995590b7f4df4141a87ec7ef531c6f2
+      internalID: 1769969692
       vertices: []
       indices: 
       edges: []
@@ -532,25 +490,23 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      hank2_0: 508893265
-      hank2_1: -451712552
-      hank2_10: -205020077
-      hank2_11: 1215046788
-      hank2_12: 1989581879
-      hank2_13: 844821251
-      hank2_14: 1454387140
-      hank2_15: -1667087701
-      hank2_16: -1540202342
-      hank2_17: 338834355
-      hank2_18: -1682772915
-      hank2_2: -1063937691
-      hank2_3: -1416223982
-      hank2_4: -447036904
-      hank2_5: -326750300
-      hank2_6: 1568774631
-      hank2_7: -242805611
-      hank2_8: -2032960638
-      hank2_9: 1001798941
+      explosion_0: 998213282
+      explosion_1: 1663427892
+      explosion_10: -1168726525
+      explosion_11: -997240136
+      explosion_12: 1778260756
+      explosion_13: -653647200
+      explosion_14: 1754234212
+      explosion_15: 708828948
+      explosion_16: 1769969692
+      explosion_2: 1672359576
+      explosion_3: 1067181822
+      explosion_4: -1544620772
+      explosion_5: 1674790031
+      explosion_6: -2138294341
+      explosion_7: -2058551090
+      explosion_8: -782541210
+      explosion_9: 1047647538
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

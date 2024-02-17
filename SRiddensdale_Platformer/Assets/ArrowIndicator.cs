@@ -62,8 +62,8 @@ public class ArrowIndicator : MonoBehaviour
         }
 
         _arrows[(int)dir].transform.position = new Vector2(
-            Mathf.Clamp(_arrows[(int)dir].transform.position.x, Camera.main.transform.position.x - _arrowBounds.x, Camera.main.transform.position.x + _arrowBounds.x),
-            Mathf.Clamp(_arrows[(int)dir].transform.position.y, Camera.main.transform.position.y - _arrowBounds.y, Camera.main.transform.position.y + _arrowBounds.y));
+            Mathf.Clamp(_arrows[(int)dir].transform.position.x, Camera.main.transform.position.x - _arrowBounds.x + 2, Camera.main.transform.position.x + _arrowBounds.x - 2),
+            Mathf.Clamp(_arrows[(int)dir].transform.position.y, Camera.main.transform.position.y - _arrowBounds.y + 2, Camera.main.transform.position.y + _arrowBounds.y - 2));
     
         UpdateArrows((int)dir);
         if (!hit) UpdateArrows(-1);

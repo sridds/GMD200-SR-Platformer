@@ -46,8 +46,14 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this);
     }
 
-    private void OnSceneRestart() => RespawnAtCheckpoint();
+    private void OnSceneRestart()
+    {
+        Time.timeScale = 1.0f;
+        IsGameOver = false;
+        player = null;
 
+        RespawnAtCheckpoint();
+    }
     /// <summary>
     /// Respawns the player at the current active checkpoint
     /// </summary>

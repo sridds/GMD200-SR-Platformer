@@ -34,7 +34,7 @@ public class DeathScreen : MonoBehaviour
     private IEnumerator IDeathScreen()
     {
         GameManager.Instance.SetTimeScaleInstant(0.0f);
-        AudioHandler.instance.PauseMusic();
+        //AudioHandler.instance.PauseMusic();
         AudioHandler.instance.ProcessAudioData(_deathScreenStartSound);
 
         Player p = GameManager.Instance.LocalPlayer;

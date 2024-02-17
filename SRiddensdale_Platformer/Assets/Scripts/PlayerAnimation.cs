@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerAnimation : MonoBehaviour
 {
     private PlayerMovement movement;
+    private Player player;
 
     [SerializeField]
     private SpriteRenderer spriteRenderer;
@@ -16,6 +17,7 @@ public class PlayerAnimation : MonoBehaviour
     private void Awake()
     {
         movement = FindObjectOfType<PlayerMovement>();
+        player = FindObjectOfType<Player>();
 
         movement.OnJump += CallJump;
         movement.OnLand += CallLand;
@@ -36,9 +38,15 @@ public class PlayerAnimation : MonoBehaviour
         else {
             animator.SetFloat("MoveSpeedX", 0.0f);
         }
+
+        if (player.IsHanklingBubbled) animator.SetBool("Carry", false);
+        else animator.SetBool("Carry", true);
     }
 
     private void CallJump() => animator.SetTrigger("Jump");
 
-    private void CallLand() => animator.SetTrigger("Land");
+    private void CallLand()
+    {
+        animator.SetTrigger("Land");
+    }
 }

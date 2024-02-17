@@ -5,7 +5,21 @@ using UnityEngine;
 
 public class AudioHandler : MonoBehaviour
 {
+    public enum FadeMode
+    {
+        None,
+        Fade,
+        CrossFade
+    }
+
     public static AudioHandler instance;
+
+    [Header("Music")]
+    [SerializeField] private AudioClip bubbleTrack;
+    [SerializeField] private AudioClip stageTheme;
+
+    public AudioClip BubbleTrack { get { return bubbleTrack; } }
+    public AudioClip StageTheme { get { return stageTheme; } }
 
     [Header("References")]
     [SerializeField] private AudioSource musicSource;
@@ -43,6 +57,24 @@ public class AudioHandler : MonoBehaviour
         UpdateMusicQueue();
     }
 
+    public void SwitchMusic(FadeMode fade, float fadeInTime, float fadeOutTime, float targetVolume, AudioClip music, bool loop = true)
+    {
+        musicSource.loop = loop;
+
+        switch (fade)
+        {
+            case FadeMode.None:
+                ChangeTrack(music, true);
+                break;
+            case FadeMode.Fade:
+                FadeChangeTrack(music, fadeInTime, fadeOutTime, targetVolume);
+                break;
+            case FadeMode.CrossFade:
+                CrossFadeTrack(music, fadeInTime, fadeOutTime, targetVolume);
+                break;
+        }
+    }
+
     private void UpdateMusicQueue()
     {
         // Continue going through the queue of music actions
@@ -73,7 +105,7 @@ public class AudioHandler : MonoBehaviour
     /// <param name="newTrack"></param>
     /// <param name="fadeInTime"></param>
     /// <param name="fadeOutTime"></param>
-    public void FadeChangeTrack(AudioClip newTrack, float fadeInTime, float fadeOutTime) => musicCoroutineQueue.Enqueue(IFadeChangeTrack(newTrack, fadeInTime, fadeOutTime));
+    public void FadeChangeTrack(AudioClip newTrack, float fadeInTime, float fadeOutTime, float targetVolume) => musicCoroutineQueue.Enqueue(IFadeChangeTrack(newTrack, fadeInTime, fadeOutTime, targetVolume));
 
     /// <summary>
     /// Fades two music tracks at the same time
@@ -81,7 +113,7 @@ public class AudioHandler : MonoBehaviour
     /// <param name="newTrack"></param>
     /// <param name="fadeInTime"></param>
     /// <param name="fadeOutTime"></param>
-    public void CrossFadeTrack(AudioClip newTrack, float fadeInTime, float fadeOutTime) => musicCoroutineQueue.Enqueue(ICrossFadeTrack(newTrack, fadeInTime, fadeOutTime));
+    public void CrossFadeTrack(AudioClip newTrack, float fadeInTime, float fadeOutTime, float targetVolume) => musicCoroutineQueue.Enqueue(ICrossFadeTrack(newTrack, fadeInTime, fadeOutTime, targetVolume));
 
     /// <summary>
     /// Fades out the track that is currently playing
@@ -119,13 +151,13 @@ public class AudioHandler : MonoBehaviour
     /// <param name="fadeInTime"></param>
     /// <param name="fadeOutTime"></param>
     /// <returns></returns>
-    private IEnumerator IFadeChangeTrack(AudioClip newTrack, float fadeInTime, float fadeOutTime)
+    private IEnumerator IFadeChangeTrack(AudioClip newTrack, float fadeInTime, float fadeOutTime, float targetVolume)
     {
         // Fade out
         yield return StartCoroutine(IFadeToVolume(musicSource, fadeOutTime, 0.0f));
         ChangeTrack(newTrack, true);
         // Fade back in
-        yield return StartCoroutine(IFadeToVolume(musicSource, fadeInTime, 1.0f));
+        yield return StartCoroutine(IFadeToVolume(musicSource, fadeInTime, targetVolume));
 
         activeMusicCoroutine = null;
     }
@@ -137,7 +169,7 @@ public class AudioHandler : MonoBehaviour
     /// <param name="fadeInTime"></param>
     /// <param name="fadeOutTime"></param>
     /// <returns></returns>
-    private IEnumerator ICrossFadeTrack(AudioClip newTrack, float fadeInTime, float fadeOutTime)
+    private IEnumerator ICrossFadeTrack(AudioClip newTrack, float fadeInTime, float fadeOutTime, float targetVolume)
     {
         GameObject go = new GameObject("Temp_MusicSource");
         AudioSource temp = go.AddComponent<AudioSource>();
@@ -151,12 +183,12 @@ public class AudioHandler : MonoBehaviour
         temp.Play();
 
         // Fade in the temp track
-        StartCoroutine(IFadeToVolume(temp, fadeInTime, 1.0f));
+        StartCoroutine(IFadeToVolume(temp, fadeInTime, targetVolume));
 
         yield return new WaitForSeconds(fadeInTime + fadeOutTime);
 
         // After the wait, setup the music source to have the same parameters as the temp]
-        musicSource.volume = 1.0f;
+        musicSource.volume = targetVolume;
         musicSource.clip = newTrack;
         musicSource.time = temp.time;
 

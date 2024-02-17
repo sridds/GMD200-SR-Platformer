@@ -83,8 +83,8 @@ public class Health : MonoBehaviour, IDamagable, IHealable
 
         if (!_iFramesOnly) {
             CurrentHealth -= mode == HealthMode.Value ? damageAmount : 1;
-            AudioHandler.instance.ProcessAudioData(_damageSound);
         }
+        AudioHandler.instance.ProcessAudioData(_damageSound);
         OnIFramesTaken?.Invoke();
 
         // call the iframes coroutine

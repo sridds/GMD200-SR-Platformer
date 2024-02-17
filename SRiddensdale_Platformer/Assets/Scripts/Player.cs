@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
 
     // accessors
     public Hankling MyHankling { get { if (myHankling == null) myHankling = FindObjectOfType<Hankling>(); return myHankling; } }
+    public bool IsHanklingBubbled { get; private set; }
 
     Timer activeHanklingTimer;
 
@@ -41,15 +42,22 @@ public class Player : MonoBehaviour
         // create a timer for when the hankling enters the bubble
         activeHanklingTimer = new Timer(hanklingBubbleTimer);
         activeHanklingTimer.OnTimerEnd += Lose;
+
+        IsHanklingBubbled = true;
+        AudioHandler.instance.SwitchMusic(AudioHandler.FadeMode.CrossFade, 1.0f, 1.0f, 0.62f, AudioHandler.instance.BubbleTrack, false);
     }
 
     private void BubbleExit()
     {
+        IsHanklingBubbled = false;
+
         if (activeHanklingTimer == null) return;
 
         // unsubscribe and set null
         activeHanklingTimer.OnTimerEnd -= Lose;
         activeHanklingTimer = null;
+
+        AudioHandler.instance.SwitchMusic(AudioHandler.FadeMode.None, 1.0f, 1.0f, 1.0f, AudioHandler.instance.StageTheme);
     }
 
     /// <summary>
@@ -57,8 +65,6 @@ public class Player : MonoBehaviour
     /// </summary>
     private void Lose()
     {
-        Debug.Log("Hankling gone");
-
         GameManager.Instance.CallGameOver();
     }
 

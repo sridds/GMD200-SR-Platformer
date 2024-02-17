@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class HitPlayer : MonoBehaviour
 {
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if (!collision.gameObject.TryGetComponent<IDamagable>(out IDamagable damage)) return;
+        if (!collision.gameObject.TryGetComponent<Health>(out Health damage)) return;
+        if (damage.IFramesActive) return; // dont take damage more than once
+
         collision.gameObject.TryGetComponent<PlayerMovement>(out PlayerMovement movement);
 
         movement.StunPlayer();
