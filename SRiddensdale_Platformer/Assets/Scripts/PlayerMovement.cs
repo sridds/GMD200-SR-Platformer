@@ -60,6 +60,9 @@ public class PlayerMovement : MonoBehaviour
     private Coroutine activeGravityCoroutine;
     private bool enteredAirFlag;
     private bool gravityCoroutineFinished;
+    private bool stunned = false;
+
+    // enums
     private Direction direction;
 
     // events
@@ -89,15 +92,20 @@ public class PlayerMovement : MonoBehaviour
         TryQueueJump();
         UpdateGravity();
 
+        if (IsGrounded()) stunned = false;
+
         // Set moving variable
         IsMoving = xInput != 0;
     }
+
+    public void StunPlayer() => stunned = true;
 
     private void FixedUpdate()
     {
         // handle jump
         if (jumpQueued) HandleJump();
-
+        if (stunned) return;
+        
         rb.velocity = new Vector2(xInput * _playerSpeed, rb.velocity.y);
     }
 
@@ -118,7 +126,7 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private void GetInput()
     {
-        if (inputFrozen) return;
+        if (inputFrozen || stunned) return;
 
         // get axis inputs
         xInput = Input.GetAxisRaw("Horizontal");

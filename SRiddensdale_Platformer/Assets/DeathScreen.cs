@@ -24,6 +24,11 @@ public class DeathScreen : MonoBehaviour
         GameManager.Instance.OnGameOver += StartDeathScreen;
     }
 
+    private void OnDisable()
+    {
+        GameManager.Instance.OnGameOver -= StartDeathScreen;
+    }
+
     private void StartDeathScreen() => StartCoroutine(IDeathScreen());
 
     private IEnumerator IDeathScreen()

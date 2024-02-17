@@ -22,6 +22,9 @@ public class Health : MonoBehaviour, IDamagable, IHealable
     [SerializeField, Min(1)]
     private int _maxHits;
 
+    [SerializeField]
+    private bool _iFramesOnly = false;
+
     [Header("IFrames")]
     [SerializeField]
     private bool _doIFrames = true;
@@ -56,9 +59,17 @@ public class Health : MonoBehaviour, IDamagable, IHealable
     public delegate void HealthDepleted();
     public HealthDepleted OnHealthDepleted;
 
+    public delegate void IFramesTaken();
+    public IFramesTaken OnIFramesTaken;
+
     private void Start()
     {
         CurrentHealth = mode == HealthMode.Value ? _maxHealth : _maxHits;
+    }
+
+    private void Update()
+    {
+        if(Time.timeScale == 0.0f) _blinker.enabled = true;
     }
 
     /// <summary>
@@ -70,8 +81,11 @@ public class Health : MonoBehaviour, IDamagable, IHealable
         if (!canDamage) return;
         if (healthDepleted) return;
 
-        CurrentHealth -= mode == HealthMode.Value ? damageAmount : 1;
-        AudioHandler.instance.ProcessAudioData(_damageSound);
+        if (!_iFramesOnly) {
+            CurrentHealth -= mode == HealthMode.Value ? damageAmount : 1;
+            AudioHandler.instance.ProcessAudioData(_damageSound);
+        }
+        OnIFramesTaken?.Invoke();
 
         // call the iframes coroutine
         if (_doIFrames) StartCoroutine(HandleIFrames(_maxIFrames, _IFrameInterval));

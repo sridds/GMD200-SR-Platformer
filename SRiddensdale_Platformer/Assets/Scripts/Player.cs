@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     private float hanklingBubbleTimer = 10.0f;
 
     private Hankling myHankling;
+    private Health myHealth;
 
     // accessors
     public Hankling MyHankling { get { if (myHankling == null) myHankling = FindObjectOfType<Hankling>(); return myHankling; } }
@@ -16,8 +17,17 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        myHealth = GetComponent<Health>();
+
         MyHankling.OnBubbleEnter += BubbleEntered;
         MyHankling.OnBubblePopped += BubbleExit;
+        myHealth.OnIFramesTaken += PlayerHit;
+    }
+
+    private void PlayerHit()
+    {
+        // enter the bubble
+        myHankling.EnterBubble();
     }
 
     private void Update()

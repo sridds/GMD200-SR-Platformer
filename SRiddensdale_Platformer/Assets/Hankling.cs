@@ -60,6 +60,11 @@ public class Hankling : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
+    private void OnDisable()
+    {
+        GameManager.Instance.OnGameOver -= EndCrying;
+    }
+
     public void EndCrying() => StartCoroutine(IEndCrying());
 
     private IEnumerator IEndCrying()
@@ -85,6 +90,9 @@ public class Hankling : MonoBehaviour
 
     public void EnterBubble()
     {
+        // return if already in bubble
+        if (myState == State.Bubble) return;
+
         _bubble.transform.position = transform.position;
         _bubble.gameObject.SetActive(true);
         animator.SetBool("Sad", true);
@@ -96,6 +104,9 @@ public class Hankling : MonoBehaviour
 
     public void ExitBubble()
     {
+        // return if already carried
+        if (myState == State.Carried) return;
+
         if (bubbleActiveTime < _allowPopAfterSeconds) return;
         _bubble.gameObject.SetActive(false);
         animator.SetBool("Sad", false);
@@ -113,11 +124,12 @@ public class Hankling : MonoBehaviour
         else if (myState == State.Bubble) HandleBubbleState();
 
         // debug
+        /*
         if (Input.GetKeyDown(KeyCode.E))
         {
             if (myState == State.Carried) EnterBubble();
             else ExitBubble();
-        }
+        }*/
     }
 
     /// <summary>
