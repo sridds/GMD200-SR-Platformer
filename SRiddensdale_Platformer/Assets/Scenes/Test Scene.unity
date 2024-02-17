@@ -464,11 +464,11 @@ MonoBehaviour:
   _freezeTime: 0.5
   _returnToPlayerTime: 0.8
   _bubblePopSound:
-    clip: {fileID: 8300000, guid: b453ff58621bb4c0085a8df79377a6d8, type: 3}
+    clip: {fileID: 8300000, guid: 2dda9242210a0490c8fadfb58289c293, type: 3}
     volume: 1
     randomizePitch: 1
-    minPitch: 0.96
-    maxPitch: 1.1
+    minPitch: 1
+    maxPitch: 1
     spawnPosition: {x: 0, y: 0, z: 0}
   _cryingSound: {fileID: 1668680448}
 --- !u!1 &859027321
@@ -1086,7 +1086,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1af123d3a47349deb399efa469f15f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _arrowBounds: {x: 5, y: 5}
+  _arrowBounds: {x: 9, y: 9}
   _arrows:
   - {fileID: 1755033416}
   - {fileID: 1409376247}

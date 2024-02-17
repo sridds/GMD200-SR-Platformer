@@ -31,14 +31,14 @@ public class ArrowIndicator : MonoBehaviour
     {
         transform.position = new Vector2(Camera.main.transform.position.x, Camera.main.transform.position.y);
 
-        if (!showArrows)
-        {
+        if (!showArrows) {
             UpdateArrows(-1);
             return;
         }
         Direction lastDir = dir;
 
         bool hit = false;
+
 
         if(hankling.transform.position.x > Camera.main.transform.position.x + _arrowBounds.x) {
             dir = Direction.Left;
@@ -50,7 +50,7 @@ public class ArrowIndicator : MonoBehaviour
             _arrows[(int)dir].transform.position = new Vector2(_arrows[(int)dir].transform.position.x, hankling.transform.position.y);
             hit = true;
         }
-        if(hankling.transform.position.y < Camera.main.transform.position.y - _arrowBounds.y) {
+        else if(hankling.transform.position.y < Camera.main.transform.position.y - _arrowBounds.y) {
             dir = Direction.Up;
             _arrows[(int)dir].transform.position = new Vector2(hankling.transform.position.x, _arrows[(int)dir].transform.position.y);
             hit = true;
@@ -61,6 +61,10 @@ public class ArrowIndicator : MonoBehaviour
             hit = true;
         }
 
+        _arrows[(int)dir].transform.position = new Vector2(
+            Mathf.Clamp(_arrows[(int)dir].transform.position.x, Camera.main.transform.position.x - _arrowBounds.x, Camera.main.transform.position.x + _arrowBounds.x),
+            Mathf.Clamp(_arrows[(int)dir].transform.position.y, Camera.main.transform.position.y - _arrowBounds.y, Camera.main.transform.position.y + _arrowBounds.y));
+    
         UpdateArrows((int)dir);
         if (!hit) UpdateArrows(-1);
     }

@@ -38,6 +38,7 @@ public class Hankling : MonoBehaviour
     private AudioSource _cryingSound;
 
     Vector2 vel;
+    Animator animator;
 
     // events
     public delegate void BubbleEnter();
@@ -55,6 +56,8 @@ public class Hankling : MonoBehaviour
         // subscribe to events
         _bubble.OnBubbleTriggered += ExitBubble;
         GameManager.Instance.OnGameOver += EndCrying;
+
+        animator = GetComponent<Animator>();
     }
 
     public void EndCrying() => StartCoroutine(IEndCrying());
@@ -84,6 +87,7 @@ public class Hankling : MonoBehaviour
     {
         _bubble.transform.position = transform.position;
         _bubble.gameObject.SetActive(true);
+        animator.SetBool("Sad", true);
         _cryingSound.Play();
         myState = State.Bubble;
 
@@ -94,6 +98,7 @@ public class Hankling : MonoBehaviour
     {
         if (bubbleActiveTime < _allowPopAfterSeconds) return;
         _bubble.gameObject.SetActive(false);
+        animator.SetBool("Sad", false);
         _cryingSound.Stop();
 
         AudioHandler.instance.ProcessAudioData(_bubblePopSound);
