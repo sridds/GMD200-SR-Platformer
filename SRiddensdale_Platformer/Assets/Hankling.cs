@@ -162,9 +162,10 @@ public class Hankling : MonoBehaviour
         }
 
         myState = State.Carried;
+        transform.position = target;
+
         yield return null;
         GameManager.Instance.SetTimeScale(1.0f, 0.3f);
-        
         transform.position = target;
     }
 }
