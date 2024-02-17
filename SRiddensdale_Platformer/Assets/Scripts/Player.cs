@@ -48,6 +48,8 @@ public class Player : MonoBehaviour
     private void Lose()
     {
         Debug.Log("Hankling gone");
+
+        GameManager.Instance.CallGameOver();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

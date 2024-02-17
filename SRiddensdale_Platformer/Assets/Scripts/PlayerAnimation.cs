@@ -23,6 +23,8 @@ public class PlayerAnimation : MonoBehaviour
 
     private void Update()
     {
+        if (GameManager.Instance.IsGameOver) return;
+
         PlayerMovement.Direction dir = movement.GetDirection();
 
         if(dir == PlayerMovement.Direction.Left) spriteRenderer.flipX = flipX ? true : false;

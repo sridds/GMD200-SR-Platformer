@@ -24,10 +24,14 @@ public class GameManager : MonoBehaviour
     public Vector3 SavedPosition { get { return savedPosition; } }
     public Player LocalPlayer { get { if (player == null) player = FindObjectOfType<Player>(); return player; } }
     public GameState CurrentGameState { get; private set; }
+    public bool IsGameOver { get; private set; }
 
     // delegates
     public delegate void GameStateChanged(GameState state);
     public GameStateChanged OnGameStateChanged;
+
+    public delegate void GameOver();
+    public GameOver OnGameOver;
 
     private void Awake() {
         // create an instance of the game manager
@@ -58,6 +62,13 @@ public class GameManager : MonoBehaviour
     {
         savedPosition = point;
         CheckpointSaved = true;
+    }
+
+    public void CallGameOver()
+    {
+        IsGameOver = true;
+
+        OnGameOver?.Invoke();
     }
 
     private void Update()
