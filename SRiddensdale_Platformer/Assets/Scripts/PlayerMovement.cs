@@ -44,6 +44,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private LayerMask _groundCheckMask;
 
+    [Header("RPG")]
+    [SerializeField]
+    private float _rpgCooldownTime = 0.5f;
+
     // private variables
     private float xInput;
     private bool jumpQueued = false;
@@ -77,10 +81,11 @@ public class PlayerMovement : MonoBehaviour
     bool playerFrozen = false;
     bool inRpgState = false;
     bool rpgQueued = false;
+    bool canUseRPG = true;
 
     public delegate void RPGReady();
     public RPGReady OnRPGReady;
-
+    private Timer rpgCooldown;
 
     private void Start()
     {
@@ -95,6 +100,8 @@ public class PlayerMovement : MonoBehaviour
 
         if (IsGrounded()) stunned = false;
         if (rpgQueued) EnterRPGState();
+
+        if (rpgCooldown != null) rpgCooldown.Tick(Time.deltaTime);
 
         // Set moving variable
         IsMoving = xInput != 0;
@@ -120,6 +127,10 @@ public class PlayerMovement : MonoBehaviour
     {
         rpgQueued = false;
         inRpgState = false;
+        canUseRPG = false;
+
+        rpgCooldown = new Timer(_rpgCooldownTime);
+        rpgCooldown.OnTimerEnd += () => canUseRPG = true;
     }
 
     public void StunPlayer() => stunned = true;
@@ -157,7 +168,7 @@ public class PlayerMovement : MonoBehaviour
         if(!inRpgState) xInput = Input.GetAxisRaw("Horizontal");
 
         if (xInput != 0) lastXInput = xInput;
-        if (Input.GetKeyDown(KeyCode.X)) {
+        if (Input.GetKeyDown(KeyCode.X) && canUseRPG && !inRpgState) {
             rpgQueued = true;
         }
         else {

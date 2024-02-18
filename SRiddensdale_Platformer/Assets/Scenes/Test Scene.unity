@@ -1040,6 +1040,13 @@ MonoBehaviour:
   hanklingBubbleTimer: 13
   rocketPrefab: {fileID: 2169098140082824725, guid: f94c1e46e4716491e95c135a99cca3e9, type: 3}
   rocketShootForce: 25
+  fireRPGSound:
+    clip: {fileID: 8300000, guid: bc3616f971f6b4846a82a086420faf15, type: 3}
+    volume: 0.75
+    randomizePitch: 1
+    minPitch: 0.65
+    maxPitch: 0.7
+    spawnPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &884432773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1089,6 +1096,7 @@ MonoBehaviour:
   _groundCheckMask:
     serializedVersion: 2
     m_Bits: 64
+  _rpgCooldownTime: 0.5
 --- !u!50 &884432774
 Rigidbody2D:
   serializedVersion: 4
