@@ -73,19 +73,17 @@ public class RPGIndicator : MonoBehaviour
 
         if (angle > _maxAngle)
         {
-            angle = _maxAngle - 3.0f;
             flipped = !flipped;
 
-            if (flipped) timer -= Time.deltaTime;
-            else timer += Time.deltaTime;
+            if (flipped) timer -= Time.deltaTime * 2;
+            else timer += Time.deltaTime * 2;
         }
         else if (angle < _minAngle)
         {
-            angle = _minAngle + 3.0f;
             flipped = !flipped;
 
-            if (flipped) timer -= Time.deltaTime;
-            else timer += Time.deltaTime;
+            if (flipped) timer -= Time.deltaTime * 2;
+            else timer += Time.deltaTime * 2;
         }
 
         if (flipped) timer -= Time.deltaTime;

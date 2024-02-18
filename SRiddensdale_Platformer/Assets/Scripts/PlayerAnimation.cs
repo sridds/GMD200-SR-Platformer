@@ -49,6 +49,8 @@ public class PlayerAnimation : MonoBehaviour
 
     private void CallLand()
     {
+        if (movement.IsRPGReady) return;
+
         CameraShake.instance.Shake(0.15f, 0.2f);
         animator.SetTrigger("Land");
     }
