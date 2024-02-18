@@ -1037,7 +1037,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c60dbbfc736d742b2840ea65c020b104, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hanklingBubbleTimer: 11.5
+  hanklingBubbleTimer: 13
+  rocketPrefab: {fileID: 2169098140082824725, guid: f94c1e46e4716491e95c135a99cca3e9, type: 3}
+  rocketShootForce: 25
 --- !u!114 &884432773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2179,7 +2181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ebcb0de6713e4facbba7684fe867563, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bubbleTrack: {fileID: 8300000, guid: e5a2f9971867d4368ab0de812f0061b3, type: 3}
+  bubbleTrack: {fileID: 8300000, guid: 0bdc50b5ac7744dbe813bfd6f1e995e5, type: 3}
   stageTheme: {fileID: 8300000, guid: 1a6bf3e5baa1c4265804fe1c8c9323dc, type: 3}
   musicSource: {fileID: 1451418862}
   soundPrefab: {fileID: 1772967812775894131, guid: 57ed9cfb5cad24f2db0deab5d248c101, type: 3}
@@ -5267,7 +5269,7 @@ GameObject:
   - component: {fileID: 9071820224773679339}
   m_Layer: 7
   m_Name: Bubble
-  m_TagString: Untagged
+  m_TagString: Bubble
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

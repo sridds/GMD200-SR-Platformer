@@ -21,7 +21,10 @@ public class PlayerAnimation : MonoBehaviour
 
         movement.OnJump += CallJump;
         movement.OnLand += CallLand;
+        movement.OnRPGReady += () => animator.SetTrigger("ReadyRPG");
+        player.OnFireRPG += () => animator.SetTrigger("FireRPG");
     }
+
 
     private void Update()
     {
@@ -41,15 +44,6 @@ public class PlayerAnimation : MonoBehaviour
 
         if (player.IsHanklingBubbled) animator.SetBool("Carry", false);
         else animator.SetBool("Carry", true);
-
-        if (movement.IsRPGReady)
-        {
-            animator.SetBool("ReadyRPG", true);
-        }
-        else
-        {
-            animator.SetBool("ReadyRPG", false);
-        }
     }
 
     private void CallJump() => animator.SetTrigger("Jump");

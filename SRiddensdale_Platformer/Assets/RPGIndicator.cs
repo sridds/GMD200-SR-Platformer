@@ -9,10 +9,14 @@ public class RPGIndicator : MonoBehaviour
     [SerializeField]
     private float _amplitude = 4.0f;
 
+    private Animator animator;
+
     private float _maxAngle = 90;
     private float _minAngle = 0;
 
     bool flipped = false;
+    bool flashing = false;
+
     float timer = 0.0f;
 
     private PlayerMovement movement;
@@ -20,6 +24,7 @@ public class RPGIndicator : MonoBehaviour
     private void Start()
     {
         movement = FindObjectOfType<PlayerMovement>();
+        animator = GetComponent<Animator>();
     }
 
     PlayerMovement.Direction lastDir;
@@ -54,7 +59,7 @@ public class RPGIndicator : MonoBehaviour
 
         if (angle > _maxAngle)
         {
-            angle = _maxAngle;
+            angle = _maxAngle - 3.0f;
             flipped = !flipped;
 
             if (flipped) timer -= Time.deltaTime;
@@ -62,7 +67,7 @@ public class RPGIndicator : MonoBehaviour
         }
         else if (angle < _minAngle)
         {
-            angle = _minAngle;
+            angle = _minAngle + 3.0f;
             flipped = !flipped;
 
             if (flipped) timer -= Time.deltaTime;
@@ -74,12 +79,26 @@ public class RPGIndicator : MonoBehaviour
 
         float sin = Mathf.Sin(timer * _amplitude) * _speed * speedMultiplier;
         float cos = Mathf.Cos(timer * _amplitude) * _speed * speedMultiplier;
-        
-        transform.position = new Vector2(circleCenter.x + cos, circleCenter.y + sin);
+
+        if(!flashing) transform.position = new Vector2(circleCenter.x + cos, circleCenter.y + sin);
     }
 
-    private void Awake()
+    private void OnEnable()
     {
         timer = 0.0f;
+        flashing = false;
     }
+
+    public void Flash()
+    {
+        animator.SetTrigger("Flash");
+        flashing = true;
+    }
+
+    public void Exit()
+    {
+        animator.SetTrigger("Exit");
+    }
+
+    public void Deactivate() => gameObject.SetActive(false);
 }

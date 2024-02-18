@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using static PlayerMovement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -77,6 +78,9 @@ public class PlayerMovement : MonoBehaviour
     bool inRpgState = false;
     bool rpgQueued = false;
 
+    public delegate void RPGReady();
+    public RPGReady OnRPGReady;
+
 
     private void Start()
     {
@@ -100,16 +104,22 @@ public class PlayerMovement : MonoBehaviour
 
     private void EnterRPGState()
     {
-        if (!IsGrounded()) return;
+        if (!IsGrounded() && !inRpgState) return;
 
-        Debug.Log("Entered RPG state");
         inRpgState = true;
         xInput = 0.0f;
         rpgQueued = false;
 
         if (indicator == null) indicator = FindObjectOfType<RPGIndicator>(true);
+        OnRPGReady?.Invoke();
 
         indicator.gameObject.SetActive(true);
+    }
+
+    public void ExitRPGState()
+    {
+        rpgQueued = false;
+        inRpgState = false;
     }
 
     public void StunPlayer() => stunned = true;

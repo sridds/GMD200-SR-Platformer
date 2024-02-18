@@ -246,7 +246,7 @@ AnimatorStateTransition:
   m_TransitionDuration: 0.016469866
   m_TransitionOffset: 0.17514755
   m_ExitTime: 0.9619926
-  m_HasExitTime: 0
+  m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
@@ -367,13 +367,13 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: ReadyRPG
-    m_Type: 4
+  - m_Name: FireRPG
+    m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: FireRPG
+  - m_Name: ReadyRPG
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
