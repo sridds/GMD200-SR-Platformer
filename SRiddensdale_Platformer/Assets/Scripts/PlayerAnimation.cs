@@ -49,6 +49,7 @@ public class PlayerAnimation : MonoBehaviour
 
     private void CallLand()
     {
+        CameraShake.instance.Shake(0.15f, 0.2f);
         animator.SetTrigger("Land");
     }
 }

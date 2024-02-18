@@ -8,6 +8,10 @@ public class RPGIndicator : MonoBehaviour
     private float _speed = 2.0f;
     [SerializeField]
     private float _amplitude = 4.0f;
+    [SerializeField]
+    private AudioData _tickAudio;
+    [SerializeField]
+    private float _tickFrequency = 0.1f;
 
     private Animator animator;
 
@@ -20,6 +24,7 @@ public class RPGIndicator : MonoBehaviour
     float timer = 0.0f;
 
     private PlayerMovement movement;
+    private Timer tickTimer;
 
     private void Start()
     {
@@ -31,6 +36,15 @@ public class RPGIndicator : MonoBehaviour
 
     void Update()
     {
+        if (tickTimer != null)
+        {
+            if(!flashing) tickTimer.Tick(Time.deltaTime);
+        }
+        else {
+            tickTimer = new Timer(_tickFrequency);
+            tickTimer.OnTimerEnd += () => { AudioHandler.instance.ProcessAudioData(_tickAudio); tickTimer = null; };
+        }
+
         if(movement.GetDirection() != lastDir) {
             timer = 0.0f;
         }

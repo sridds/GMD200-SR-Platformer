@@ -53,6 +53,8 @@ public class PlayerMovement : MonoBehaviour
     private AudioData _jumpSound;
     [SerializeField]
     private AudioData _footstepSound;
+    [SerializeField]
+    private AudioData _landSound;
 
     // private variables
     private float xInput;
@@ -225,7 +227,11 @@ public class PlayerMovement : MonoBehaviour
         if (col != null) {
 
             // the ground flag handles calling the land event only once.
-            if (!groundFlag) OnLand?.Invoke();
+            if (!groundFlag)
+            {
+                AudioHandler.instance.ProcessAudioData(_landSound);
+                OnLand?.Invoke();
+            }
             groundFlag = true;
 
             return true;

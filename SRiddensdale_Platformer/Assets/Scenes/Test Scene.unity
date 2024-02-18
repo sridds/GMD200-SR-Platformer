@@ -1111,6 +1111,13 @@ MonoBehaviour:
     minPitch: 0.95
     maxPitch: 1.1
     spawnPosition: {x: 0, y: 0, z: 0}
+  _landSound:
+    clip: {fileID: 8300000, guid: 567edc0c7e9b141149b608180ee5bda9, type: 3}
+    volume: 0.8
+    randomizePitch: 1
+    minPitch: 0.7
+    maxPitch: 0.76
+    spawnPosition: {x: 0, y: 0, z: 0}
 --- !u!50 &884432774
 Rigidbody2D:
   serializedVersion: 4
