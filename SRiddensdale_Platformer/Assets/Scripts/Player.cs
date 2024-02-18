@@ -134,14 +134,22 @@ public class Player : MonoBehaviour
     /// </summary>
     private void Lose()
     {
+        if (GameManager.Instance.IsGameOver) return;
+
         GameManager.Instance.CallGameOver();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // restart level if hit hazard
-        if (collision.gameObject.tag == "Hazard") GameManager.Instance.RestartLevel();
+        if (collision.gameObject.tag == "Hazard")
+        {
+            myHankling.EnterBubble();
+            AudioHandler.instance.PauseMusic();
+
+            GameManager.Instance.CallGameOver();
+        }
     }
 
-    
+   
 }

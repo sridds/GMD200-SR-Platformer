@@ -49,7 +49,9 @@ public class AudioHandler : MonoBehaviour
 
     public void PauseMusic() {
         prePauseVolume = musicSource.volume;
+
         musicSource.volume = 0.0f;
+        if(tempSource != null) tempSource.volume = 0.0f;
     }
 
     private void Update()
@@ -162,6 +164,8 @@ public class AudioHandler : MonoBehaviour
         activeMusicCoroutine = null;
     }
 
+    AudioSource tempSource = null;
+
     /// <summary>
     /// Creates a temporary music track to cross fade between the current music track and the new music track
     /// </summary>
@@ -172,31 +176,32 @@ public class AudioHandler : MonoBehaviour
     private IEnumerator ICrossFadeTrack(AudioClip newTrack, float fadeInTime, float fadeOutTime, float targetVolume)
     {
         GameObject go = new GameObject("Temp_MusicSource");
-        AudioSource temp = go.AddComponent<AudioSource>();
+        tempSource = go.AddComponent<AudioSource>();
 
         // Fade out the music source
         StartCoroutine(IFadeToVolume(musicSource, fadeOutTime, 0.0f));
 
         // Play the temp
-        temp.volume = 0.0f;
-        temp.clip = newTrack;
-        temp.Play();
+        tempSource.volume = 0.0f;
+        tempSource.clip = newTrack;
+        tempSource.Play();
 
         // Fade in the temp track
-        StartCoroutine(IFadeToVolume(temp, fadeInTime, targetVolume));
+        StartCoroutine(IFadeToVolume(tempSource, fadeInTime, targetVolume));
 
         yield return new WaitForSeconds(fadeInTime + fadeOutTime);
 
         // After the wait, setup the music source to have the same parameters as the temp]
         musicSource.volume = targetVolume;
         musicSource.clip = newTrack;
-        musicSource.time = temp.time;
+        musicSource.time = tempSource.time;
 
         // Destroy the temporary music source and play music source
         Destroy(go);
         musicSource.Play();
 
         activeMusicCoroutine = null;
+        tempSource = null;
     }
 
     /// <summary>

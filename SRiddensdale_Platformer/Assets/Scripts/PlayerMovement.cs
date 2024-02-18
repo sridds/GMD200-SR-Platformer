@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections;
-using static PlayerMovement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -15,6 +14,10 @@ public class PlayerMovement : MonoBehaviour
     [Header("Modifiers")]
     [SerializeField]
     private float _playerSpeed;
+    [SerializeField]
+    private float _acceleration = 5.0f;
+    [SerializeField]
+    private float _deceleration = 2.0f;
 
     [Header("Jump")]
     [SerializeField]
@@ -63,6 +66,7 @@ public class PlayerMovement : MonoBehaviour
     private float coyoteTimeCounter;
     private float airTime = 0.0f;
     private float gravityFactor = 1.0f;
+    private float mySpeed = 0.0f;
 
     private Coroutine activeGravityCoroutine;
     private bool enteredAirFlag;
@@ -118,6 +122,9 @@ public class PlayerMovement : MonoBehaviour
 
         // Set moving variable
         IsMoving = xInput != 0;
+
+        // speed
+        mySpeed = IsMoving ? Mathf.Lerp(mySpeed, _playerSpeed, Time.deltaTime * _acceleration) : Mathf.Lerp(mySpeed, 0.0f, Time.deltaTime * _deceleration);
     }
 
     RPGIndicator indicator;
@@ -154,7 +161,7 @@ public class PlayerMovement : MonoBehaviour
         if (jumpQueued) HandleJump();
         if (stunned) return;
         
-        rb.velocity = new Vector2(xInput * _playerSpeed, rb.velocity.y);
+        rb.velocity = new Vector2((int)direction * mySpeed, rb.velocity.y);
     }
 
     private void HandleJump()

@@ -62,5 +62,9 @@ public class DeathScreen : MonoBehaviour
         AudioHandler.instance.ProcessAudioData(_hankSadSound);
         p.GetComponent<Animator>().enabled = false;
         _playerSpriteRenderer.sprite = _playerDeathSprite;
+
+        yield return new WaitForSecondsRealtime(2);
+
+        GameManager.Instance.RestartLevel();
     }
 }
