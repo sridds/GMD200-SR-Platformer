@@ -71,7 +71,10 @@ public class PlayerMovement : MonoBehaviour
     private Coroutine activeGravityCoroutine;
     private bool enteredAirFlag;
     private bool gravityCoroutineFinished;
+
+    private float timeStunned = 0.0f;
     private bool stunned = false;
+    private bool canExitStun = false;
 
     // enums
     private Direction direction;
@@ -111,11 +114,17 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Update()
     {
+        if (stunned) timeStunned += Time.deltaTime;
+        else timeStunned = 0.0f;
+
+        if (stunned && timeStunned > 0.2f) canExitStun = true;
+        else canExitStun = false;
+
         GetInput();
         TryQueueJump();
         UpdateGravity();
 
-        if (IsGrounded()) stunned = false;
+        if (IsGrounded() && canExitStun) stunned = false;
         if (rpgQueued) EnterRPGState();
 
         if (rpgCooldown != null) rpgCooldown.Tick(Time.deltaTime);
