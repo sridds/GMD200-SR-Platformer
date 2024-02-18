@@ -37,6 +37,10 @@ public class Hankling : MonoBehaviour
     [SerializeField]
     private AudioSource _cryingSound;
 
+    [Header("VFX")]
+    [SerializeField]
+    private ParticleSystem _bubblePopEffect;
+
     Vector2 vel;
     Animator animator;
 
@@ -113,6 +117,8 @@ public class Hankling : MonoBehaviour
         _cryingSound.Stop();
 
         AudioHandler.instance.ProcessAudioData(_bubblePopSound);
+        Instantiate(_bubblePopEffect, transform.position, Quaternion.identity);
+
         OnBubblePopped?.Invoke();
         StartCoroutine(ReturnToPlayer());
     }

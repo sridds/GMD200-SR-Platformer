@@ -26,6 +26,8 @@ public class Player : MonoBehaviour
     public Hankling MyHankling { get { if (myHankling == null) myHankling = FindObjectOfType<Hankling>(); return myHankling; } }
     public bool IsHanklingBubbled { get; private set; }
 
+    public Timer HanklingTimer { get { return activeHanklingTimer; } }
+
     Timer activeHanklingTimer;
     Timer rpgPrimedTimer;
 
