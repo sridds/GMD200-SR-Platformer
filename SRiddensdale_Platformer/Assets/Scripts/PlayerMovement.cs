@@ -14,12 +14,6 @@ public class PlayerMovement : MonoBehaviour
     [Header("Modifiers")]
     [SerializeField]
     private float _playerSpeed;
-    [SerializeField]
-    private float _machTier1Speed;
-    [SerializeField]
-    private float _machTier2Speed;
-    [SerializeField]
-    private float _machTier3Speed;
 
     [Header("Jump")]
     [SerializeField]
@@ -76,9 +70,12 @@ public class PlayerMovement : MonoBehaviour
     public bool IsMoving { get; private set; }
     public Rigidbody2D MyBody { get { return rb; } }
     public float TopSpeed { get { return _playerSpeed; } }
+    public bool IsRPGReady { get { return inRpgState; } }
 
     bool inputFrozen = false;
     bool playerFrozen = false;
+    bool inRpgState = false;
+    bool rpgQueued = false;
 
 
     private void Start()
@@ -93,9 +90,26 @@ public class PlayerMovement : MonoBehaviour
         UpdateGravity();
 
         if (IsGrounded()) stunned = false;
+        if (rpgQueued) EnterRPGState();
 
         // Set moving variable
         IsMoving = xInput != 0;
+    }
+
+    RPGIndicator indicator;
+
+    private void EnterRPGState()
+    {
+        if (!IsGrounded()) return;
+
+        Debug.Log("Entered RPG state");
+        inRpgState = true;
+        xInput = 0.0f;
+        rpgQueued = false;
+
+        if (indicator == null) indicator = FindObjectOfType<RPGIndicator>(true);
+
+        indicator.gameObject.SetActive(true);
     }
 
     public void StunPlayer() => stunned = true;
@@ -129,9 +143,16 @@ public class PlayerMovement : MonoBehaviour
         if (inputFrozen || stunned) return;
 
         // get axis inputs
-        xInput = Input.GetAxisRaw("Horizontal");
+
+        if(!inRpgState) xInput = Input.GetAxisRaw("Horizontal");
 
         if (xInput != 0) lastXInput = xInput;
+        if (Input.GetKeyDown(KeyCode.X)) {
+            rpgQueued = true;
+        }
+        else {
+            rpgQueued = false;
+        }
 
         // set direction based on the non 0 last x input
         direction = (Direction)((int)Mathf.Sign(lastXInput));
@@ -139,6 +160,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void TryQueueJump()
     {
+        if (inRpgState) return;
+
         // reset coyoteTime
         if (IsGrounded()) coyoteTimeCounter = _coyoteTime;
         // tick down coyote time while not grounded

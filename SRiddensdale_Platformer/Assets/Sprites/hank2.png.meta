@@ -521,6 +521,48 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: hank2_19
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 226
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93b9636aabc22431f876c3d8704f6ebd
+      internalID: 1217500587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hank2_20
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 233
+        width: 13
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc5ec31396d7144fea583e8c4bce9148
+      internalID: 2109435175
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -543,7 +585,9 @@ TextureImporter:
       hank2_16: -1540202342
       hank2_17: 338834355
       hank2_18: -1682772915
+      hank2_19: 1217500587
       hank2_2: -1063937691
+      hank2_20: 2109435175
       hank2_3: -1416223982
       hank2_4: -447036904
       hank2_5: -326750300

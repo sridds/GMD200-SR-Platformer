@@ -8,15 +8,13 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float hanklingBubbleTimer = 10.0f;
 
-    [Header("RPG")]
-
     private Hankling myHankling;
     private Health myHealth;
+    private PlayerMovement movement;
 
     // accessors
     public Hankling MyHankling { get { if (myHankling == null) myHankling = FindObjectOfType<Hankling>(); return myHankling; } }
     public bool IsHanklingBubbled { get; private set; }
-    public bool IsInRPGState { get; private set; }
 
     Timer activeHanklingTimer;
 
@@ -48,7 +46,7 @@ public class Player : MonoBehaviour
         activeHanklingTimer.OnTimerEnd += Lose;
 
         IsHanklingBubbled = true;
-        AudioHandler.instance.SwitchMusic(AudioHandler.FadeMode.CrossFade, 1.0f, 1.0f, 0.62f, AudioHandler.instance.BubbleTrack, false);
+        AudioHandler.instance.SwitchMusic(AudioHandler.FadeMode.CrossFade, 0.5f, 0.5f, 0.62f, AudioHandler.instance.BubbleTrack, false);
     }
 
     private void BubbleExit()
@@ -61,7 +59,7 @@ public class Player : MonoBehaviour
         activeHanklingTimer.OnTimerEnd -= Lose;
         activeHanklingTimer = null;
 
-        AudioHandler.instance.SwitchMusic(AudioHandler.FadeMode.None, 1.0f, 1.0f, 1.0f, AudioHandler.instance.StageTheme);
+        AudioHandler.instance.SwitchMusic(AudioHandler.FadeMode.None, 0.0f, 0.0f, 1.0f, AudioHandler.instance.StageTheme);
     }
 
     /// <summary>
