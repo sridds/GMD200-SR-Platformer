@@ -59,6 +59,7 @@ public class Player : MonoBehaviour
     {
         // enter the bubble
         myHankling.EnterBubble();
+        CameraShake.instance.Shake(0.5f, 0.4f);
     }
 
     private void Update()

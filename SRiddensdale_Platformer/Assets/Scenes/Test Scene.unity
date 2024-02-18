@@ -1097,6 +1097,20 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   _rpgCooldownTime: 0.5
+  _jumpSound:
+    clip: {fileID: 8300000, guid: ed87382adbd284368a02ad4f7556a58b, type: 3}
+    volume: 0.85
+    randomizePitch: 1
+    minPitch: 1
+    maxPitch: 1.1
+    spawnPosition: {x: 0, y: 0, z: 0}
+  _footstepSound:
+    clip: {fileID: 8300000, guid: 4e6acb008b61d4f3ebb46026769c25c6, type: 3}
+    volume: 0.7
+    randomizePitch: 1
+    minPitch: 0.95
+    maxPitch: 1.1
+    spawnPosition: {x: 0, y: 0, z: 0}
 --- !u!50 &884432774
 Rigidbody2D:
   serializedVersion: 4

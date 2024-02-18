@@ -48,6 +48,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float _rpgCooldownTime = 0.5f;
 
+    [Header("Audio")]
+    [SerializeField]
+    private AudioData _jumpSound;
+    [SerializeField]
+    private AudioData _footstepSound;
+
     // private variables
     private float xInput;
     private bool jumpQueued = false;
@@ -92,6 +98,11 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
+    public void PlayFootstep()
+    {
+        if (!IsGrounded() || !IsMoving) return;
+        AudioHandler.instance.ProcessAudioData(_footstepSound);
+    }
     private void Update()
     {
         GetInput();
@@ -148,6 +159,7 @@ public class PlayerMovement : MonoBehaviour
     {
         // directly set player velocity
         rb.velocity = new Vector2(rb.velocity.x, _playerJumpHeight);
+        AudioHandler.instance.ProcessAudioData(_jumpSound);
         OnJump?.Invoke();
 
         // set flag

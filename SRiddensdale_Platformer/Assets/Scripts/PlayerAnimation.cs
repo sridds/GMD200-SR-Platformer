@@ -25,7 +25,6 @@ public class PlayerAnimation : MonoBehaviour
         player.OnFireRPG += () => animator.SetTrigger("FireRPG");
     }
 
-
     private void Update()
     {
         if (GameManager.Instance.IsGameOver) return;
