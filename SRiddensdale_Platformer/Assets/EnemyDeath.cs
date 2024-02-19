@@ -24,7 +24,7 @@ public class EnemyDeath : MonoBehaviour
 
     private void Death()
     {
-        _rb.AddForce(new Vector2(Random.Range(-4, 4), 10), ForceMode2D.Impulse);
+        _rb.AddForce(new Vector2(Random.Range(-2, 2), 10), ForceMode2D.Impulse);
         _rb.freezeRotation = false;
         _rb.angularVelocity = Random.Range(_randomAngularVelocity.x, _randomAngularVelocity.y);
 
