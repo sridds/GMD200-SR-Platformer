@@ -37,7 +37,13 @@ public class Health : MonoBehaviour, IDamagable, IHealable
     private float _IFrameInterval = 0.05f;
     [ShowIf(nameof(_doIFrames))]
     [SerializeField]
+    private bool _multipleSprites;
+    [ShowIf(nameof(_doIFrames))]
+    [SerializeField]
     private SpriteRenderer _blinker;
+    [ShowIf(nameof(_multipleSprites))]
+    [SerializeField]
+    private SpriteRenderer[] _blinkers;
 
     [Header("Sound")]
     [SerializeField]
@@ -145,9 +151,14 @@ public class Health : MonoBehaviour, IDamagable, IHealable
         for (int i = 0; i < iframes; i++)
         {
             yield return new WaitForSeconds(interval);
-            _blinker.enabled = false;
+
+            if (_multipleSprites) foreach (SpriteRenderer rend in _blinkers) rend.enabled = false;
+            else _blinker.enabled = false;
+
             yield return new WaitForSeconds(interval);
-            _blinker.enabled = true;
+
+            if (_multipleSprites) foreach (SpriteRenderer rend in _blinkers) rend.enabled = true;
+            else _blinker.enabled = true;
         }
         // just in case its still disabled
         _blinker.enabled = true;

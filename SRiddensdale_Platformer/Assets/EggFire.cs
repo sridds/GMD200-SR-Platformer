@@ -16,18 +16,29 @@ public class EggFire : MonoBehaviour
     private Vector2 _randomY;
 
     private Timer _fireTimer;
+    private Animator animator;
+
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
+    }
 
     private void Update()
     {
         // Handle timer
         if (_fireTimer == null) {
             _fireTimer = new Timer(_fireInterval);
-            _fireTimer.OnTimerEnd += Fire;
+            _fireTimer.OnTimerEnd += StartAnimation;
         }
         else _fireTimer.Tick(Time.deltaTime); 
     }
 
-    private void Fire()
+    private void StartAnimation()
+    {
+        animator.SetTrigger("Fire");
+    }
+
+    public void Fire()
     {
         GameObject go = Instantiate(_prefab, _firePoint.position, Quaternion.identity);
         Rigidbody2D rb = go.GetComponent<Rigidbody2D>();
