@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static GameManager;
 
 public class GameManager : MonoBehaviour
 {
@@ -25,6 +26,7 @@ public class GameManager : MonoBehaviour
     public Player LocalPlayer { get { if (player == null) player = FindObjectOfType<Player>(); return player; } }
     public GameState CurrentGameState { get; private set; }
     public bool IsGameOver { get; private set; }
+    public bool IsLevelComplete { get; private set; }
 
     // delegates
     public delegate void GameStateChanged(GameState state);
@@ -32,6 +34,9 @@ public class GameManager : MonoBehaviour
 
     public delegate void GameOver();
     public GameOver OnGameOver;
+
+    public delegate void LevelComplete();
+    public LevelComplete OnLevelComplete;
 
     private void Awake() {
         // create an instance of the game manager
@@ -50,6 +55,7 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1.0f;
         IsGameOver = false;
+        IsLevelComplete = false;
         player = null;
 
         RespawnAtCheckpoint();
@@ -70,11 +76,24 @@ public class GameManager : MonoBehaviour
         CheckpointSaved = true;
     }
 
+    /// <summary>
+    /// Called externally to let other scripts perform the necessary logic when the game is over
+    /// </summary>
     public void CallGameOver()
     {
         IsGameOver = true;
 
         OnGameOver?.Invoke();
+    }
+
+    /// <summary>
+    /// Externally called to let other scripts perform needed logic when the level is finished
+    /// </summary>
+    public void CallLevelComplete()
+    {
+        IsLevelComplete = true;
+
+        OnLevelComplete?.Invoke();
     }
 
     private void Update()

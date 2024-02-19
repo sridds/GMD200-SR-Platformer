@@ -12,6 +12,7 @@ public class CameraMovement : MonoBehaviour
     public Vector3 boundsMax;
 
     private PlayerMovement movementReference;
+    private bool frozen = false;
 
     private void Start()
     {
@@ -20,6 +21,8 @@ public class CameraMovement : MonoBehaviour
 
     private void LateUpdate()
     {
+        if (frozen) return;
+
         if (player != null)
         {
             Vector3 startPos = transform.position;
@@ -41,4 +44,6 @@ public class CameraMovement : MonoBehaviour
             transform.position = new Vector3(newPos.x, newPos.y, targetPos.z);
         }
     }
+
+    public void FreezeCamera(bool frozen) => this.frozen = frozen;
 }

@@ -222,7 +222,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void TryQueueJump()
     {
-        if (inRpgState) return;
+        if (inRpgState || inputFrozen) return;
 
         // reset coyoteTime
         if (IsGrounded()) coyoteTimeCounter = _coyoteTime;
@@ -337,6 +337,11 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public void FreezeInput(bool frozen) => inputFrozen = frozen;
+    public void FreezeInputAndVelocity()
+    {
+        inputFrozen = true;
+        xInput = 0.0f;
+    }
     public void FreezePlayer(bool frozen)
     {
         playerFrozen = frozen;

@@ -2,10 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static Player;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField]
+    private SpriteRenderer _playerSprite;
     [Header("Bubble")]
     [SerializeField]
     private float hanklingBubbleTimer = 10.0f;
@@ -27,6 +28,8 @@ public class Player : MonoBehaviour
     public bool IsHanklingBubbled { get; private set; }
 
     public Timer HanklingTimer { get { return activeHanklingTimer; } }
+    public PlayerMovement Movement { get { return movement; } }
+    public SpriteRenderer MyRenderer { get { return _playerSprite; } }
 
     Timer activeHanklingTimer;
     Timer rpgPrimedTimer;

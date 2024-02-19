@@ -52,6 +52,7 @@ public class Hankling : MonoBehaviour
     public BubblePopped OnBubblePopped;
 
     private float bubbleActiveTime;
+    private bool followPlayer = true;
 
     private void Start()
     {
@@ -143,6 +144,8 @@ public class Hankling : MonoBehaviour
     /// </summary>
     private void HandleCarriedState()
     {
+        if (!followPlayer) return;
+
         bubbleActiveTime = 0.0f;
         Vector2 target = (Vector2)player.transform.position + _holdOffset;
 
@@ -150,6 +153,8 @@ public class Hankling : MonoBehaviour
         transform.position = Vector2.SmoothDamp(transform.position, target, ref vel, _speed);
         transform.position = new Vector2(target.x, transform.position.y);
     }
+
+    public bool SetFollowPlayer(bool doFollow) => followPlayer = doFollow;
 
     /// <summary>
     /// Handles the state while in a bubble
