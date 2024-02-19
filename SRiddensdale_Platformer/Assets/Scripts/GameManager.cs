@@ -88,7 +88,7 @@ public class GameManager : MonoBehaviour
     private IEnumerator RestartScene()
     {
         FindObjectOfType<ScreenWiper>().WipeIn(0.3f);
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSecondsRealtime(1.0f);
 
         var async = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
 

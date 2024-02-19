@@ -85,7 +85,7 @@ public class Player : MonoBehaviour
         CameraShake.instance.Shake(0.5f, 0.3f);
         AudioHandler.instance.ProcessAudioData(fireRPGSound);
 
-        Rocket r = Instantiate(rocketPrefab, indicator.transform.position, Quaternion.identity);
+        Rocket r = Instantiate(rocketPrefab, transform.position, Quaternion.identity);
         Rigidbody2D rb = r.gameObject.GetComponent<Rigidbody2D>();
 
         Vector2 dir = indicator.transform.position - transform.position;

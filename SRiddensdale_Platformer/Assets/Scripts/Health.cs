@@ -54,6 +54,7 @@ public class Health : MonoBehaviour, IDamagable, IHealable
     public int CurrentHealth { get; private set; }
     public int MaxHealth { get { return mode == HealthMode.Value ? _maxHealth : _maxHits; } }
     public bool IFramesActive { get; private set; }
+    public bool IsHealthDepleted { get { return healthDepleted; } }
 
     private bool canDamage = true;
     private bool healthDepleted = false;

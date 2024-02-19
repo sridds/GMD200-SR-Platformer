@@ -5,6 +5,8 @@ using UnityEngine;
 public class EggFire : MonoBehaviour
 {
     [SerializeField]
+    private Health _health;
+    [SerializeField]
     private float _fireInterval;
     [SerializeField]
     private GameObject _prefab;
@@ -29,6 +31,7 @@ public class EggFire : MonoBehaviour
 
     private void Update()
     {
+        if (_health.IsHealthDepleted) return;
         if (Vector2.Distance(GameManager.Instance.LocalPlayer.transform.position, transform.position) > _distToThrow) return;
 
         // Handle timer
