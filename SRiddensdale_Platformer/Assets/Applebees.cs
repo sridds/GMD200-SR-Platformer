@@ -9,9 +9,13 @@ public class Applebees : MonoBehaviour
     [SerializeField]
     private Sprite _playerProudSprite;
     [SerializeField]
+    private Sprite _playerSuperProudSprite;
+    [SerializeField]
     private Transform _enterence;
     [SerializeField]
     private AudioData _enterApplebeesSound;
+    [SerializeField]
+    private AudioData _yippie;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -30,12 +34,19 @@ public class Applebees : MonoBehaviour
         Player player = GameManager.Instance.LocalPlayer;
         //Time.timeScale = 0.0f;
         AudioHandler.instance.PauseMusic();
+
         player.Movement.FreezeInputAndVelocity();
         CameraMovement cam = FindObjectOfType<CameraMovement>();
         cam.FreezeCamera(true);
 
         AudioHandler.instance.ProcessAudioData(_fanfare);
-        yield return new WaitForSecondsRealtime(1.0f);
+
+        for(int i = 0; i < 4; i++)
+        {
+            AudioHandler.instance.ProcessAudioData(_yippie);
+            yield return new WaitForSecondsRealtime(0.3f);
+        }
+
         StartCoroutine(ILerpObject(cam.transform, new Vector2(transform.position.x, cam.transform.position.y), 4.0f, false, true));
 
         yield return new WaitForSecondsRealtime(1.0f);
@@ -48,6 +59,7 @@ public class Applebees : MonoBehaviour
         StartCoroutine(ILerpObject(hankling.transform, new Vector2(player.transform.position.x + 1.0f, player.transform.position.y), 1.0f, false, true));
         yield return new WaitForSecondsRealtime(1.0f);
         StartCoroutine(ILerpObject(hankling.transform, _enterence.transform.position, 2.0f, false, true));
+        player.MyRenderer.sprite = _playerSuperProudSprite;
 
         yield return new WaitForSecondsRealtime(2.5f);
 

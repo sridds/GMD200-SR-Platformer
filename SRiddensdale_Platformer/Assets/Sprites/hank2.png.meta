@@ -1286,7 +1286,7 @@ TextureImporter:
         width: 80
         height: 80
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1294,6 +1294,27 @@ TextureImporter:
       bones: []
       spriteID: 322416afdadbf4042940c65d67527861
       internalID: 1076878790
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hank2_56
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 0
+        width: 48
+        height: 48
+      alignment: 9
+      pivot: {x: 0.6701892, y: 0.332503}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54fbaab93734d4299b7d3fc0b66abf5a
+      internalID: -901846281
       vertices: []
       indices: 
       edges: []

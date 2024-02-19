@@ -764,12 +764,20 @@ MonoBehaviour:
     maxPitch: 0
     spawnPosition: {x: 0, y: 0, z: 0}
   _playerProudSprite: {fileID: -242805611, guid: b0cbe83c82e4b42ad849c5e85b71261f, type: 3}
+  _playerSuperProudSprite: {fileID: -901846281, guid: b0cbe83c82e4b42ad849c5e85b71261f, type: 3}
   _enterence: {fileID: 906110707}
   _enterApplebeesSound:
     clip: {fileID: 8300000, guid: 47ddf67c6403b4728b6f7ea6559feb6c, type: 3}
     volume: 0.8
     randomizePitch: 0
     minPitch: 0.8
+    maxPitch: 0
+    spawnPosition: {x: 0, y: 0, z: 0}
+  _yippie:
+    clip: {fileID: 8300000, guid: 2dda9242210a0490c8fadfb58289c293, type: 3}
+    volume: 0.7
+    randomizePitch: 0
+    minPitch: 1
     maxPitch: 0
     spawnPosition: {x: 0, y: 0, z: 0}
 --- !u!61 &276838018
@@ -918,7 +926,7 @@ Transform:
   m_GameObject: {fileID: 402315208}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.583004, y: -1.5396183, z: 0}
+  m_LocalPosition: {x: -1.333004, y: 1.4603817, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2023,7 +2031,7 @@ Transform:
   m_GameObject: {fileID: 884432769}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 88.5, y: 11.75, z: 0}
+  m_LocalPosition: {x: -1.25, y: -0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
