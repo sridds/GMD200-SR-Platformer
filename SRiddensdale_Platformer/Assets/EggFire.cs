@@ -14,6 +14,10 @@ public class EggFire : MonoBehaviour
     private Vector2 _randomX;
     [SerializeField]
     private Vector2 _randomY;
+    [SerializeField]
+    private AudioData _fireSound;
+    [SerializeField]
+    private float _distToThrow = 15.0f;
 
     private Timer _fireTimer;
     private Animator animator;
@@ -25,6 +29,8 @@ public class EggFire : MonoBehaviour
 
     private void Update()
     {
+        if (Vector2.Distance(GameManager.Instance.LocalPlayer.transform.position, transform.position) > _distToThrow) return;
+
         // Handle timer
         if (_fireTimer == null) {
             _fireTimer = new Timer(_fireInterval);
@@ -35,13 +41,14 @@ public class EggFire : MonoBehaviour
 
     private void StartAnimation()
     {
-        animator.SetTrigger("Fire");
+        animator.SetTrigger("Flip");
     }
 
     public void Fire()
     {
         GameObject go = Instantiate(_prefab, _firePoint.position, Quaternion.identity);
         Rigidbody2D rb = go.GetComponent<Rigidbody2D>();
+        AudioHandler.instance.ProcessAudioData(_fireSound);
 
         rb.velocity = new Vector2(Random.Range(_randomX.x, _randomX.y), Random.Range(_randomY.x, _randomY.y));
 
