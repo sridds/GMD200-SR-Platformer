@@ -91,6 +91,7 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D MyBody { get { return rb; } }
     public float TopSpeed { get { return _playerSpeed; } }
     public bool IsRPGReady { get { return inRpgState; } }
+    public bool IsJumpQueued { get { return jumpQueued; } }
 
     bool inputFrozen = false;
     bool playerFrozen = false;
@@ -136,11 +137,21 @@ public class PlayerMovement : MonoBehaviour
         mySpeed = IsMoving ? Mathf.Lerp(mySpeed, _playerSpeed, Time.deltaTime * _acceleration) : Mathf.Lerp(mySpeed, 0.0f, Time.deltaTime * _deceleration);
     }
 
+    public void CallJumpFlags()
+    {
+        OnJump?.Invoke();
+
+        // set flag
+        jumpQueued = false;
+    }
+
     RPGIndicator indicator;
 
     private void EnterRPGState()
     {
-        if (!IsGrounded() && !inRpgState) return;
+        if (!IsGrounded()) return;
+        if (jumpQueued) return;
+        if (inRpgState) return;
 
         inRpgState = true;
         xInput = 0.0f;
