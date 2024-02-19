@@ -11,6 +11,9 @@ public class Rocket : MonoBehaviour
     private GameObject _explosionEffect;
 
     [SerializeField]
+    private ParticleSystem _particle;
+
+    [SerializeField]
     private AudioData _hitSound;
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -31,6 +34,8 @@ public class Rocket : MonoBehaviour
         // process the hit sound and destroy
         AudioHandler.instance.ProcessAudioData(_hitSound);
         Instantiate(_explosionEffect, transform.position, Quaternion.identity);
+        _particle.transform.parent = null;
+        _particle.Stop();
 
         Destroy(gameObject);
     }

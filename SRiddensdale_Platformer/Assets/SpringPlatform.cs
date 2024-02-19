@@ -33,11 +33,13 @@ public class SpringPlatform : MonoBehaviour
         {
             player.MyBody.velocity = new Vector2(player.MyBody.velocity.x, _superYForce);
             AudioHandler.instance.ProcessAudioData(_superSpringAudio);
+            CameraShake.instance.Shake(0.7f, 0.35f);
         }
         else
         {
             player.MyBody.velocity = new Vector2(player.MyBody.velocity.x, _yForce);
             AudioHandler.instance.ProcessAudioData(_springAudio);
+            CameraShake.instance.Shake(0.5f, 0.25f);
         }
         bufferTime = 0.0f;
         player.CallJumpFlags();
