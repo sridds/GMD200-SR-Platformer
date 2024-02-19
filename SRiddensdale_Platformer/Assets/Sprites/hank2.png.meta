@@ -563,6 +563,153 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: hank2_21
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 176
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d02c59d184c7748c987eb8f4aa8eb0fb
+      internalID: -580488130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hank2_22
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 149
+        width: 40
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6eb0c922466547dd88201bf3d3598be
+      internalID: -749675737
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hank2_23
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 160
+        width: 20
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: abf1c6b27888448ef9d30b132c438886
+      internalID: 186577236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hank2_24
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 172
+        width: 17
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6505c06c2d6754aa98a79cc7c21c3d12
+      internalID: 153909309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hank2_25
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 160
+        width: 22
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ad253b23f09e43578ce762d6c76b958
+      internalID: 1580541963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hank2_26
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 144
+        width: 54
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72fdf79f436ac4015a70829d92836d4b
+      internalID: 1845762759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hank2_27
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 96
+        width: 53
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7372721a48274e499dad8292cb3d9f8
+      internalID: -119035052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -588,6 +735,13 @@ TextureImporter:
       hank2_19: 1217500587
       hank2_2: -1063937691
       hank2_20: 2109435175
+      hank2_21: -580488130
+      hank2_22: -749675737
+      hank2_23: 186577236
+      hank2_24: 153909309
+      hank2_25: 1580541963
+      hank2_26: 1845762759
+      hank2_27: -119035052
       hank2_3: -1416223982
       hank2_4: -447036904
       hank2_5: -326750300
