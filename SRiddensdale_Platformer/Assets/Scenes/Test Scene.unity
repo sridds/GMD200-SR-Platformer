@@ -308,7 +308,7 @@ GameObject:
   - component: {fileID: 192631169}
   - component: {fileID: 192631170}
   - component: {fileID: 192631171}
-  m_Layer: 11
+  m_Layer: 9
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -359,10 +359,10 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.021346092, y: -0.103482485}
+  m_Offset: {x: 0, y: -0.15}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -373,7 +373,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.9055843, y: 1.6930349}
+  m_Size: {x: 1.5, y: 1.7}
   m_EdgeRadius: 0
 --- !u!114 &192631171
 MonoBehaviour:
@@ -384,33 +384,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 192631168}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d46b99748da384500b2d1fa4ee43024d, type: 3}
+  m_Script: {fileID: 11500000, guid: 8b93512037912436ba1199e087222bdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mode: 1
-  _maxHealth: 25
-  _maxHits: 1
-  _iFramesOnly: 0
-  _doIFrames: 1
-  _maxIFrames: 5
-  _IFrameInterval: 0.05
-  _multipleSprites: 0
-  _blinker: {fileID: 768923277}
-  _blinkers: []
-  _damageSound:
-    clip: {fileID: 8300000, guid: 4dcd0d2764f94420e8946dd8c8b5cca7, type: 3}
-    volume: 0.7
-    randomizePitch: 1
-    minPitch: 0.9
-    maxPitch: 1.1
-    spawnPosition: {x: 0, y: 0, z: 0}
-  _healSound:
-    clip: {fileID: 0}
-    volume: 0
-    randomizePitch: 0
-    minPitch: 0
-    maxPitch: 0
-    spawnPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &209196550
 GameObject:
   m_ObjectHideFlags: 0
@@ -1301,10 +1277,11 @@ GameObject:
   - component: {fileID: 768923278}
   - component: {fileID: 768923277}
   - component: {fileID: 768923276}
-  - component: {fileID: 768923279}
   - component: {fileID: 768923280}
   - component: {fileID: 768923281}
-  m_Layer: 9
+  - component: {fileID: 768923282}
+  - component: {fileID: 768923283}
+  m_Layer: 11
   m_Name: EnemyTest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1340,7 +1317,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.028532982, y: -0.15336609}
@@ -1354,7 +1331,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.5720005, y: 1.6932678}
+  m_Size: {x: 1.1, y: 1.6932678}
   m_EdgeRadius: 0
 --- !u!212 &768923277
 SpriteRenderer:
@@ -1424,18 +1401,6 @@ Transform:
   - {fileID: 192631169}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &768923279
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 768923275}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b93512037912436ba1199e087222bdd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!50 &768923280
 Rigidbody2D:
   serializedVersion: 4
@@ -1475,7 +1440,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3836a299716d483f99d9a7a3fcc40eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: {fileID: 192631171}
+  _health: {fileID: 768923282}
   _rb: {fileID: 768923280}
   _collidersToDisable:
   - {fileID: 768923276}
@@ -1489,6 +1454,62 @@ MonoBehaviour:
     spawnPosition: {x: 0, y: 0, z: 0}
   _destroyTime: 8
   _randomAngularVelocity: {x: -45, y: 45}
+--- !u!114 &768923282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 768923275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d46b99748da384500b2d1fa4ee43024d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mode: 1
+  _maxHealth: 25
+  _maxHits: 1
+  _iFramesOnly: 0
+  _doIFrames: 1
+  _maxIFrames: 5
+  _IFrameInterval: 0.05
+  _multipleSprites: 0
+  _blinker: {fileID: 768923277}
+  _blinkers: []
+  _damageSound:
+    clip: {fileID: 8300000, guid: 4dcd0d2764f94420e8946dd8c8b5cca7, type: 3}
+    volume: 0.7
+    randomizePitch: 1
+    minPitch: 0.9
+    maxPitch: 1.1
+    spawnPosition: {x: 0, y: 0, z: 0}
+  _healSound:
+    clip: {fileID: 0}
+    volume: 0
+    randomizePitch: 0
+    minPitch: 0
+    maxPitch: 0
+    spawnPosition: {x: 0, y: 0, z: 0}
+--- !u!114 &768923283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 768923275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfd1a9a94f2854d0eb068c633d4fc1ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _health: {fileID: 768923282}
+  _speed: 3
+  _groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  _rayLength: 0.75
+  _rayDownLength: 2
+  _sprite: {fileID: 768923277}
 --- !u!1 &813976060
 GameObject:
   m_ObjectHideFlags: 0
@@ -2612,6 +2633,7 @@ GameObject:
   - component: {fileID: 1275808728}
   - component: {fileID: 1275808730}
   - component: {fileID: 1275808729}
+  - component: {fileID: 1275808731}
   m_Layer: 11
   m_Name: Eggman
   m_TagString: Untagged
@@ -2924,6 +2946,26 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!114 &1275808731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1275808722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfd1a9a94f2854d0eb068c633d4fc1ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _health: {fileID: 1275808727}
+  _speed: 0
+  _groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  _rayLength: 0.6
+  _rayDownLength: 1
+  _sprite: {fileID: 0}
 --- !u!1 &1282433541
 GameObject:
   m_ObjectHideFlags: 0
