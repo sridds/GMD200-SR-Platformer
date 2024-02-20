@@ -177,7 +177,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _fanfare:
     clip: {fileID: 8300000, guid: 3bbc22bde2f1e4a3bab3b6052907b72e, type: 3}
-    volume: 0.7
+    volume: 0.6
     randomizePitch: 0
     minPitch: 1.1
     maxPitch: 0
