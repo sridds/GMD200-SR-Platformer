@@ -67,7 +67,7 @@ public class Applebees : MonoBehaviour
         hankling.gameObject.SetActive(false);
 
         yield return new WaitForSecondsRealtime(2.0f);
-        GameManager.Instance.RestartLevel();
+        GameManager.Instance.ResultsScreen();
     }
 
     private IEnumerator ILerpObject(Transform transform, Vector2 lerpPos, float time, bool addToCurrent, bool useUnscaledTime = false)

@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using static GameManager;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,6 +10,9 @@ public class GameManager : MonoBehaviour
         Playing,
         Paused
     }
+
+    [SerializeField]
+    private int _resultsSceneIndex;
 
     // Instance reference
     public static GameManager Instance { get { return instance; } }
@@ -29,6 +31,7 @@ public class GameManager : MonoBehaviour
     public bool IsGameOver { get; private set; }
     public bool IsLevelComplete { get; private set; }
     public bool IsSignInteracting { get; private set; }
+    public float TimePlaying { get; private set; }
 
     private float timeScaleBeforePause;
 
@@ -68,23 +71,24 @@ public class GameManager : MonoBehaviour
         Sign.OnSignHover += SignHover;
         Sign.OnSignExit += SignExitHover;
 
-        FindObjectOfType<DialogueBox>().OnDialogueStart += SignInteract;
-        FindObjectOfType<DialogueBox>().OnDialogueFinish += SignEndInteraction;
+        DialogueBox box = FindObjectOfType<DialogueBox>();
+
+        if(box != null)
+        {
+            FindObjectOfType<DialogueBox>().OnDialogueStart += SignInteract;
+            FindObjectOfType<DialogueBox>().OnDialogueFinish += SignEndInteraction;
+        }
     }
 
-    private void OnSceneRestart()
+    private void OnSceneLoad()
     {
-        if (IsLevelComplete) {
-            // add new level data with corresponding coins and build index
-            PersistentData.AddNewData(Coins, SceneManager.GetActiveScene().buildIndex);
-        }
-
         SubscribeToEvents();
 
         Time.timeScale = 1.0f;
         IsGameOver = false;
         IsLevelComplete = false;
         player = null;
+        TimePlaying = 0.0f;
 
         RespawnAtCheckpoint();
     }
@@ -157,25 +161,35 @@ public class GameManager : MonoBehaviour
     {
         // for debugging
         if (Input.GetKeyDown(KeyCode.R)) RestartLevel();
+
+        TimePlaying += Time.deltaTime;
     }
 
-    public void RestartLevel() => StartCoroutine(RestartScene());
+    public void ResultsScreen() => StartCoroutine(LoadScene(_resultsSceneIndex));
+    public void RestartLevel() => StartCoroutine(LoadScene(SceneManager.GetActiveScene().buildIndex));
 
-    private IEnumerator RestartScene()
+    private IEnumerator LoadScene(int index)
     {
         UnsubscribeEvents();
+
+        if (IsLevelComplete)
+        {
+            // add new level data with corresponding coins and build index
+            PersistentData.AddNewData(Coins, SceneManager.GetActiveScene().buildIndex, TimePlaying);
+        }
 
         FindObjectOfType<ScreenWiper>().WipeIn(0.3f);
         yield return new WaitForSecondsRealtime(1.0f);
 
-        var async = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
+        var async = SceneManager.LoadSceneAsync(index, LoadSceneMode.Single);
 
         // wait until the async operation finishes
         while (!async.isDone) {
             yield return null;
         }
 
-        OnSceneRestart();
+        if (index != SceneManager.GetActiveScene().buildIndex) Destroy(gameObject);
+        else OnSceneLoad();
     }
 
     private void UnsubscribeEvents()
