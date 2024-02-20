@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
         Paused
     }
 
-    private const int RESULTS_SCENE_INDEX = 3;
+    private const int RESULTS_SCENE_INDEX = 4;
 
     // Instance reference
     public static GameManager Instance { get { return instance; } }
