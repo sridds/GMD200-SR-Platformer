@@ -68,6 +68,7 @@ public class ResultsScreen : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         _youCollectedText.gameObject.SetActive(true);
         AudioHandler.instance.ProcessAudioData(_textAppearSound);
+        yield return new WaitForSeconds(0.5f);
         AudioHandler.instance.ProcessAudioData(_drumRollSound);
 
         yield return new WaitForSeconds(2f);
@@ -84,41 +85,44 @@ public class ResultsScreen : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
         AudioHandler.instance.ProcessAudioData(_textAppearSound);
-        _itemNameText.gameObject.SetActive(true);
+
+        AudioData audio = data.coins == 0 ? _crowdGaspSound : _crowdAhSound;
 
         _mealSprite.gameObject.SetActive(true);
-
-        if (data.coins == 0) {
+        if (data.coins == 0)
+        {
             _itemNameText.text = "NOTHING.";
-            AudioHandler.instance.ProcessAudioData(_crowdGaspSound);
-        } else if(data.coins <= 5) {
+        }
+        else if (data.coins <= 5)
+        {
             _itemNameText.text = "WINGS";
             _mealSprite.sprite = _wings;
-            AudioHandler.instance.ProcessAudioData(_crowdAhSound);
         }
         else if (data.coins <= 10)
         {
             _itemNameText.text = "ONION RINGS";
             _mealSprite.sprite = _onionRing;
-            AudioHandler.instance.ProcessAudioData(_crowdAhSound);
         }
         else if (data.coins <= 15)
         {
             _itemNameText.text = "MOZZ STICKS";
             _mealSprite.sprite = _mozzStick;
-            AudioHandler.instance.ProcessAudioData(_crowdAhSound);
         }
         else if (data.coins <= 20)
         {
             _itemNameText.text = "CHICKEN TENDERS";
             _mealSprite.sprite = _chicken;
-            AudioHandler.instance.ProcessAudioData(_crowdAhSound);
         }
         else
         {
             _itemNameText.text = "FOUR CHEESE MAC AND CHEESE WITH HONEY PEPPER CHICKEN TENDERS BABY";
             _mealSprite.sprite = _fourCheeseMac;
-            AudioHandler.instance.ProcessAudioData(_crowdAhSound);
         }
+
+        yield return new WaitForSeconds(0.5f);
+        _itemNameText.gameObject.SetActive(true);
+        AudioHandler.instance.ProcessAudioData(_textAppearSound);
+
+        AudioHandler.instance.ProcessAudioData(audio);
     }
 }
