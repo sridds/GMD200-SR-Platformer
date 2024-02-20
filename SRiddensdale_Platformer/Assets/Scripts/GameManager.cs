@@ -74,6 +74,11 @@ public class GameManager : MonoBehaviour
 
     private void OnSceneRestart()
     {
+        if (IsLevelComplete) {
+            // add new level data with corresponding coins and build index
+            PersistentData.AddNewData(Coins, SceneManager.GetActiveScene().buildIndex);
+        }
+
         SubscribeToEvents();
 
         Time.timeScale = 1.0f;
