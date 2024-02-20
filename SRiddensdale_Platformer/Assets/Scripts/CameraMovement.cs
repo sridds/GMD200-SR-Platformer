@@ -4,19 +4,18 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-    public Transform player;
     public Vector2 timeOffset;
     public Vector3 offsetPos;
 
     public Vector3 boundsMin;
     public Vector3 boundsMax;
 
-    private PlayerMovement movementReference;
+    private PlayerMovement player;
     private bool frozen = false;
 
     private void Start()
     {
-        movementReference = player.GetComponent<PlayerMovement>();
+        player = FindObjectOfType<PlayerMovement>();
     }
 
     private void LateUpdate()
@@ -26,7 +25,7 @@ public class CameraMovement : MonoBehaviour
         if (player != null)
         {
             Vector3 startPos = transform.position;
-            Vector3 targetPos = player.position;
+            Vector3 targetPos = player.transform.position;
 
             Vector2 offset = new Vector2(offsetPos.x, offsetPos.y);
 

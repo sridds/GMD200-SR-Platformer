@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class ResultsScreen : MonoBehaviour
 {
@@ -108,7 +109,7 @@ public class ResultsScreen : MonoBehaviour
             _itemNameText.text = "MOZZ STICKS";
             _mealSprite.sprite = _mozzStick;
         }
-        else if (data.coins <= 20)
+        else if (data.coins <= 19)
         {
             _itemNameText.text = "CHICKEN TENDERS";
             _mealSprite.sprite = _chicken;
@@ -122,7 +123,13 @@ public class ResultsScreen : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         _itemNameText.gameObject.SetActive(true);
         AudioHandler.instance.ProcessAudioData(_textAppearSound);
-
         AudioHandler.instance.ProcessAudioData(audio);
+
+        yield return new WaitForSeconds(4.0f);
+        AudioHandler.instance.FadeMusic(2.0f, 0.0f);
+        yield return new WaitForSeconds(2.0f);
+
+        // load next scene
+        SceneManager.LoadScene(data.levelID + 1);
     }
 }
