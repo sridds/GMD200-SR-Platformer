@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
         Paused
     }
 
+    // constants
     private const int RESULTS_SCENE_INDEX = 5;
 
     // Instance reference
@@ -55,25 +56,29 @@ public class GameManager : MonoBehaviour
         else if(instance != this){
             Destroy(gameObject);
         }
-
-        // ensure this is not destroyed
-        //DontDestroyOnLoad(this);
     }
 
     private void Start()
     {
         SubscribeToEvents();
 
+        // ensure timescale is reset
         Time.timeScale = 1.0f;
     }
 
+    /// <summary>
+    /// Subscribes to any necessary events to function
+    /// </summary>
     private void SubscribeToEvents()
     {
+        // subscribe to static sign event
         Sign.OnSignHover += SignHover;
         Sign.OnSignExit += SignExitHover;
 
+        // get reference to dialogue box
         DialogueBox box = FindObjectOfType<DialogueBox>();
 
+        // subscribe to box events
         if(box != null)
         {
             FindObjectOfType<DialogueBox>().OnDialogueStart += SignInteract;
@@ -85,6 +90,7 @@ public class GameManager : MonoBehaviour
     {
         SubscribeToEvents();
 
+        // reset all values
         Time.timeScale = 1.0f;
         IsGameOver = false;
         IsLevelComplete = false;
@@ -104,8 +110,14 @@ public class GameManager : MonoBehaviour
         OnCoinIncrease?.Invoke();
     }
 
+    /// <summary>
+    /// Set interacting flag
+    /// </summary>
     private void SignHover() => IsSignInteracting = true;
 
+    /// <summary>
+    /// Pauses the game and ensures nothing else can interfere with the player interacting with the sign
+    /// </summary>
     private void SignInteract()
     {
         CurrentGameState = GameState.Paused;
@@ -114,11 +126,15 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0.0f;
     }
 
+    /// <summary>
+    /// Conclude the sign interaction, reseting the state back to what it was before
+    /// </summary>
     private void SignEndInteraction()
     {
         CurrentGameState = GameState.Playing;
         Time.timeScale = timeScaleBeforePause;
     }
+
 
     private void SignExitHover() => IsSignInteracting = false;
 
@@ -166,14 +182,25 @@ public class GameManager : MonoBehaviour
         TimePlaying += Time.deltaTime;
     }
 
+    /// <summary>
+    /// Go to results screen
+    /// </summary>
     public void ResultsScreen() {
         StartCoroutine(LoadScene(RESULTS_SCENE_INDEX));
     }
 
+    /// <summary>
+    /// Restarts the level
+    /// </summary>
     public void RestartLevel() {
         StartCoroutine(LoadScene(SceneManager.GetActiveScene().buildIndex));
     }
 
+    /// <summary>
+    /// Handles the asynchrounous loading of the provided scene index
+    /// </summary>
+    /// <param name="index"></param>
+    /// <returns></returns>
     private IEnumerator LoadScene(int index)
     {
         UnsubscribeEvents();
@@ -196,8 +223,9 @@ public class GameManager : MonoBehaviour
         OnSceneLoad();
     }
 
-    private void DestroySelf() => Destroy(gameObject, 0.01f);
-
+    /// <summary>
+    /// unsubscribe from all events
+    /// </summary>
     private void UnsubscribeEvents()
     {
         Sign.OnSignHover -= SignHover;

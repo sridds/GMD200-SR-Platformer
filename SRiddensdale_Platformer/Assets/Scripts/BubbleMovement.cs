@@ -50,6 +50,7 @@ public class BubbleMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        // ensure the bubble doesn't go too far above the ground
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, float.MaxValue, _groundLayer);
         if (hit.collider != null) minY = hit.point.y;
 
@@ -61,6 +62,7 @@ public class BubbleMovement : MonoBehaviour
         // choose new target noise
         if (timer >= _bubbleNoiseFrequency)
         {
+            // set target noise
             targetNoise = (Random.insideUnitCircle * _bubbleNoiseAmplitude) * Time.fixedDeltaTime;
             timer = 0.0f;
         }

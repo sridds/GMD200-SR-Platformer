@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class Bubble : MonoBehaviour
 {
+    // private fields
     private Hankling hankling;
 
+    // accessors
     public Hankling MyHankling { get { if (hankling == null) hankling = FindObjectOfType<Hankling>(); return hankling; } }
 
+    // delegates
     public delegate void BubbleTriggered();
     public BubbleTriggered OnBubbleTriggered;
 

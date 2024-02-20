@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Handles the movement of the camera to follow the player within defined bounds
+/// </summary>
 public class CameraMovement : MonoBehaviour
 {
     public Vector2 timeOffset;
@@ -22,6 +25,7 @@ public class CameraMovement : MonoBehaviour
     {
         if (frozen) return;
 
+        // only follow as long as the player exists
         if (player != null)
         {
             Vector3 startPos = transform.position;
@@ -33,6 +37,7 @@ public class CameraMovement : MonoBehaviour
             targetPos.y += offset.y;
             targetPos.z = transform.position.z;
 
+            // clamp to bounds
             targetPos.x = Mathf.Clamp(targetPos.x, boundsMin.x, boundsMax.x);
             targetPos.y = Mathf.Clamp(targetPos.y, boundsMin.y, boundsMax.y);
 
@@ -40,6 +45,8 @@ public class CameraMovement : MonoBehaviour
             float ty = 1f - Mathf.Pow(1f - timeOffset.y, Time.deltaTime * 30);
 
             Vector2 newPos = new Vector2(Mathf.Lerp(startPos.x, targetPos.x, tx), Mathf.Lerp(startPos.y, targetPos.y, ty));
+
+            // set position
             transform.position = new Vector3(newPos.x, newPos.y, targetPos.z);
         }
     }

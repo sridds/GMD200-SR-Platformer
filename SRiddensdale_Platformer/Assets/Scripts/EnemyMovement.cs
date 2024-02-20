@@ -29,19 +29,25 @@ public class EnemyMovement : MonoBehaviour
     {
         if (_health.IsHealthDepleted) return;
 
+        // must be grounded to move
         if (isGrounded)
         {
+            // create a ray in the direction currently moving
             Ray ray = new Ray(new Vector2(transform.position.x, transform.position.y), Vector2.right * dir);
 
-            // hit wall
+            // check for wall. if wall, flip.
             if (Physics2D.Raycast(ray.origin, ray.direction * _rayLength, _rayLength, _groundLayer)) dir = -dir;
+            // check for ground. if no ground, flip.
             else if (!Physics2D.Raycast(ray.origin + (ray.direction * _rayLength), Vector2.down * _rayDownLength, _rayDownLength, _groundLayer)) dir = -dir;
 
+            // visualize ray
             Debug.DrawRay(ray.origin + (ray.direction * _rayLength), Vector2.down * _rayDownLength, Color.green);
         }
 
+        // flip sprite
         if (_sprite != null) _sprite.flipX = dir == -1 ? false : true;
 
+        // set velocity
         rb.velocity = new Vector2(_speed * dir, rb.velocity.y);
     }
 

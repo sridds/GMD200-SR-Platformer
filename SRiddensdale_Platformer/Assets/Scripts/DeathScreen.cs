@@ -33,13 +33,15 @@ public class DeathScreen : MonoBehaviour
 
     private IEnumerator IDeathScreen()
     {
+        // ensure time is frozen when dead
         GameManager.Instance.SetTimeScaleInstant(0.0f);
-        //AudioHandler.instance.PauseMusic();
         AudioHandler.instance.ProcessAudioData(_deathScreenStartSound);
 
+        // get references
         Player p = GameManager.Instance.LocalPlayer;
         GameObject bubble = FindObjectOfType<BubbleMovement>().gameObject;
 
+        // set the death wipe to hide the screen entirely
         _deathWipe.transform.position = p.transform.position;
         _deathWipe.SetActive(true);
 
@@ -51,6 +53,7 @@ public class DeathScreen : MonoBehaviour
         float initial = bubble.transform.position.y;
         float targetY = p.transform.position.y + 20.0f;
 
+        // lerp the bubble upwards into the sky
         while(elapsed < duration)
         {
             elapsed += Time.unscaledDeltaTime;
@@ -60,11 +63,13 @@ public class DeathScreen : MonoBehaviour
         }
 
         AudioHandler.instance.ProcessAudioData(_hankSadSound);
+
+        // disable the animator to allow for overriding the sprite
         p.GetComponent<Animator>().enabled = false;
         _playerSpriteRenderer.sprite = _playerDeathSprite;
 
         yield return new WaitForSecondsRealtime(2);
-
+        // restart level
         GameManager.Instance.RestartLevel();
     }
 }
