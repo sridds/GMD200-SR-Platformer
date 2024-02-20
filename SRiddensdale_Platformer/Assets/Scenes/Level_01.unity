@@ -1754,11 +1754,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1868555580813736770, guid: 7fc48fb5b0771421c885952cbd4701b0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.25
+      value: -1.29
       objectReference: {fileID: 0}
     - target: {fileID: 1868555580813736770, guid: 7fc48fb5b0771421c885952cbd4701b0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.5
+      value: -0.37
       objectReference: {fileID: 0}
     - target: {fileID: 1868555580813736770, guid: 7fc48fb5b0771421c885952cbd4701b0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2013,7 +2013,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b22424d9cd51d4234826d54f2bb418e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
   timeOffset: {x: 1, y: 0.5}
   offsetPos: {x: 0, y: 0, z: -10}
   boundsMin: {x: 0, y: 0, z: 0}
@@ -3885,7 +3884,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _deathWipe: {fileID: 11934823}
   _playerDeathSprite: {fileID: -1667087701, guid: b0cbe83c82e4b42ad849c5e85b71261f, type: 3}
-  _playerSpriteRenderer: {fileID: 0}
+  _playerSpriteRenderer: {fileID: 1660377497}
   _deathScreenStartSound:
     clip: {fileID: 8300000, guid: cc658fb7c76dd4a00b4d510a9ddf1a40, type: 3}
     volume: 0.7
@@ -4205,6 +4204,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!212 &1660377497 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 4207964625612122079, guid: 7fc48fb5b0771421c885952cbd4701b0, type: 3}
+  m_PrefabInstance: {fileID: 560605354}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1668680447
 GameObject:
   m_ObjectHideFlags: 0

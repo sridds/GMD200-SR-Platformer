@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
         }
 
         // ensure this is not destroyed
-        DontDestroyOnLoad(this);
+        //DontDestroyOnLoad(this);
     }
 
     private void Start()
@@ -188,9 +188,11 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
 
-        if (index != SceneManager.GetActiveScene().buildIndex) Destroy(gameObject);
+        if (index != SceneManager.GetActiveScene().buildIndex) DestroySelf();
         else OnSceneLoad();
     }
+
+    private void DestroySelf() => Destroy(gameObject, 0.01f);
 
     private void UnsubscribeEvents()
     {

@@ -348,6 +348,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7fc48fb5b0771421c885952cbd4701b0, type: 3}
+--- !u!212 &112860585 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 4207964625612122079, guid: 7fc48fb5b0771421c885952cbd4701b0, type: 3}
+  m_PrefabInstance: {fileID: 112860584}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &209196550
 GameObject:
   m_ObjectHideFlags: 0
@@ -2643,7 +2648,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _deathWipe: {fileID: 11934823}
   _playerDeathSprite: {fileID: -1667087701, guid: b0cbe83c82e4b42ad849c5e85b71261f, type: 3}
-  _playerSpriteRenderer: {fileID: 0}
+  _playerSpriteRenderer: {fileID: 112860585}
   _deathScreenStartSound:
     clip: {fileID: 8300000, guid: cc658fb7c76dd4a00b4d510a9ddf1a40, type: 3}
     volume: 0.7
