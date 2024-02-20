@@ -36,12 +36,28 @@ public class Sign : MonoBehaviour
         }
     }
 
+    private bool CanInteract()
+    {
+        if (!canInteract || !CanInteractAtAll()) return false;
+        if (!Input.GetKeyDown(KeyCode.Z)) return false;
+
+        return true;
+    }
+
+    private bool CanInteractAtAll()
+    {
+        if (GameManager.Instance.IsGameOver || GameManager.Instance.IsLevelComplete || GameManager.Instance.LocalPlayer.IsHanklingBubbled) return false;
+        return true;
+    }
+
     /// <summary>
     /// Call the hover enter event
     /// </summary>
     /// <param name="collision"></param>
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (!CanInteractAtAll()) return;
+
         if (collision.gameObject.tag != "Player") return;
         if (cooldownTimer != null) return;
 

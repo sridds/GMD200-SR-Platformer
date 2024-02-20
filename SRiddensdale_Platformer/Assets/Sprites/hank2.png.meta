@@ -1328,7 +1328,7 @@ TextureImporter:
         width: 8
         height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 2, y: 2, z: 2, w: 2}
       outline: []
       physicsShape: []
@@ -1336,6 +1336,90 @@ TextureImporter:
       bones: []
       spriteID: 591f3c21755784e038271020ae8e9a24
       internalID: 576764867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hank2_58
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dab3770cd63b042d2861c6ac40288233
+      internalID: -1335506854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hank2_59
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2849d69c28bb442caaade19993e0f970
+      internalID: 811174227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hank2_60
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 871709c63bb7f42b180b93b2c145e807
+      internalID: -1842263350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hank2_61
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 32
+        width: 48
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f71d94b340c84f02805c8035e69d00f
+      internalID: 452243770
       vertices: []
       indices: 
       edges: []
@@ -1405,7 +1489,11 @@ TextureImporter:
       hank2_55: 1076878790
       hank2_56: -901846281
       hank2_57: 576764867
+      hank2_58: -1335506854
+      hank2_59: 811174227
       hank2_6: 1568774631
+      hank2_60: -1842263350
+      hank2_61: 452243770
       hank2_7: -242805611
       hank2_8: -2032960638
       hank2_9: 1001798941
