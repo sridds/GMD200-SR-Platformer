@@ -20,6 +20,7 @@ public class Sign : MonoBehaviour
 
     private Timer cooldownTimer = null;
     private bool canInteract = false;
+    private bool hasTriggered = false;
 
     private void Update()
     {
@@ -46,7 +47,7 @@ public class Sign : MonoBehaviour
 
     private bool CanInteractAtAll()
     {
-        if (GameManager.Instance.IsGameOver || GameManager.Instance.IsLevelComplete || GameManager.Instance.LocalPlayer.IsHanklingBubbled) return false;
+        if (GameManager.Instance.IsGameOver || GameManager.Instance.IsLevelComplete || GameManager.Instance.LocalPlayer.IsHanklingBubbled || !GameManager.Instance.LocalPlayer.Movement.Grounded) return false;
         return true;
     }
 
@@ -54,15 +55,17 @@ public class Sign : MonoBehaviour
     /// Call the hover enter event
     /// </summary>
     /// <param name="collision"></param>
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (!CanInteractAtAll()) return;
 
         if (collision.gameObject.tag != "Player") return;
         if (cooldownTimer != null) return;
+        if (hasTriggered) return;
 
         OnSignHover?.Invoke();
         canInteract = true;
+        hasTriggered = true;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -71,5 +74,6 @@ public class Sign : MonoBehaviour
 
         OnSignExit?.Invoke();
         canInteract = false;
+        hasTriggered = false;
     }
 }

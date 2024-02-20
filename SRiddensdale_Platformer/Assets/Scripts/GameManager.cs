@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     private Player player;
 
     // Accessors
+    public int Coins { get; private set; }
     public bool CheckpointSaved { get; private set; }
     public Vector3 SavedPosition { get { return savedPosition; } }
     public Player LocalPlayer { get { if (player == null) player = FindObjectOfType<Player>(); return player; } }
@@ -40,6 +41,9 @@ public class GameManager : MonoBehaviour
 
     public delegate void LevelComplete();
     public LevelComplete OnLevelComplete;
+
+    public delegate void CoinIncrease();
+    public CoinIncrease OnCoinIncrease;
 
     private void Awake() {
         // create an instance of the game manager
@@ -78,6 +82,16 @@ public class GameManager : MonoBehaviour
         player = null;
 
         RespawnAtCheckpoint();
+    }
+
+    /// <summary>
+    /// Adds a coin
+    /// </summary>
+    public void AddCoin()
+    {
+        Coins++;
+
+        OnCoinIncrease?.Invoke();
     }
 
     private void SignHover() => IsSignInteracting = true;

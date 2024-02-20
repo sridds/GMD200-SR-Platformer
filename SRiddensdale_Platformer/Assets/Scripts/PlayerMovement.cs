@@ -92,6 +92,7 @@ public class PlayerMovement : MonoBehaviour
     public float TopSpeed { get { return _playerSpeed; } }
     public bool IsRPGReady { get { return inRpgState; } }
     public bool IsJumpQueued { get { return jumpQueued; } }
+    public bool Grounded { get; private set; }
 
     bool inputFrozen = false;
     bool playerFrozen = false;
@@ -110,11 +111,13 @@ public class PlayerMovement : MonoBehaviour
 
     public void PlayFootstep()
     {
-        if (!IsGrounded() || !IsMoving) return;
+        if (!Grounded || !IsMoving) return;
         AudioHandler.instance.ProcessAudioData(_footstepSound);
     }
     private void Update()
     {
+        Grounded = IsGrounded();
+
         if (stunned) timeStunned += Time.deltaTime;
         else timeStunned = 0.0f;
 
@@ -125,7 +128,7 @@ public class PlayerMovement : MonoBehaviour
         TryQueueJump();
         UpdateGravity();
 
-        if (IsGrounded() && canExitStun) stunned = false;
+        if (Grounded && canExitStun) stunned = false;
         if (rpgQueued) EnterRPGState();
 
         if (rpgCooldown != null) rpgCooldown.Tick(Time.deltaTime);
@@ -225,7 +228,7 @@ public class PlayerMovement : MonoBehaviour
         if (inRpgState || inputFrozen || GameManager.Instance.IsSignInteracting) return;
 
         // reset coyoteTime
-        if (IsGrounded()) coyoteTimeCounter = _coyoteTime;
+        if (Grounded) coyoteTimeCounter = _coyoteTime;
         // tick down coyote time while not grounded
         else coyoteTimeCounter -= Time.deltaTime;
 
@@ -275,14 +278,14 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private void UpdateGravity()
     {
-        if (IsGrounded())
+        if (Grounded)
         {
             enteredAirFlag = true;
             gravityCoroutineFinished = false;
         }
 
         // add to airtime while not grounded
-        if (!IsGrounded() && activeGravityCoroutine == null && !gravityCoroutineFinished || !IsGrounded() && enteredAirFlag && !gravityCoroutineFinished)
+        if (!Grounded && activeGravityCoroutine == null && !gravityCoroutineFinished || !Grounded && enteredAirFlag && !gravityCoroutineFinished)
         {
             // ensure any active coroutine is stopped
             StopAllCoroutines();
