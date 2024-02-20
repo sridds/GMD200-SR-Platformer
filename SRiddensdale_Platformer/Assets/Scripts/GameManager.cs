@@ -27,6 +27,9 @@ public class GameManager : MonoBehaviour
     public GameState CurrentGameState { get; private set; }
     public bool IsGameOver { get; private set; }
     public bool IsLevelComplete { get; private set; }
+    public bool IsSignInteracting { get; private set; }
+
+    private float timeScaleBeforePause;
 
     // delegates
     public delegate void GameStateChanged(GameState state);
@@ -51,8 +54,24 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this);
     }
 
+    private void Start()
+    {
+        SubscribeToEvents();
+    }
+
+    private void SubscribeToEvents()
+    {
+        Sign.OnSignHover += SignHover;
+        Sign.OnSignExit += SignExitHover;
+
+        FindObjectOfType<DialogueBox>().OnDialogueStart += SignInteract;
+        FindObjectOfType<DialogueBox>().OnDialogueFinish += SignEndInteraction;
+    }
+
     private void OnSceneRestart()
     {
+        SubscribeToEvents();
+
         Time.timeScale = 1.0f;
         IsGameOver = false;
         IsLevelComplete = false;
@@ -60,6 +79,25 @@ public class GameManager : MonoBehaviour
 
         RespawnAtCheckpoint();
     }
+
+    private void SignHover() => IsSignInteracting = true;
+
+    private void SignInteract()
+    {
+        CurrentGameState = GameState.Paused;
+
+        timeScaleBeforePause = Time.timeScale;
+        Time.timeScale = 0.0f;
+    }
+
+    private void SignEndInteraction()
+    {
+        CurrentGameState = GameState.Playing;
+        Time.timeScale = timeScaleBeforePause;
+    }
+
+    private void SignExitHover() => IsSignInteracting = false;
+
     /// <summary>
     /// Respawns the player at the current active checkpoint
     /// </summary>
@@ -106,6 +144,8 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator RestartScene()
     {
+        UnsubscribeEvents();
+
         FindObjectOfType<ScreenWiper>().WipeIn(0.3f);
         yield return new WaitForSecondsRealtime(1.0f);
 
@@ -117,6 +157,15 @@ public class GameManager : MonoBehaviour
         }
 
         OnSceneRestart();
+    }
+
+    private void UnsubscribeEvents()
+    {
+        Sign.OnSignHover -= SignHover;
+        Sign.OnSignExit -= SignExitHover;
+
+        FindObjectOfType<DialogueBox>().OnDialogueStart -= SignInteract;
+        FindObjectOfType<DialogueBox>().OnDialogueFinish -= SignEndInteraction;
     }
 
     /// <summary>

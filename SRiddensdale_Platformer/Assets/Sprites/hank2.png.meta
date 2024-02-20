@@ -1319,6 +1319,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: hank2_57
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 216
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 2, y: 2, z: 2, w: 2}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 591f3c21755784e038271020ae8e9a24
+      internalID: 576764867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -1383,6 +1404,7 @@ TextureImporter:
       hank2_54: 1941483095
       hank2_55: 1076878790
       hank2_56: -901846281
+      hank2_57: 576764867
       hank2_6: 1568774631
       hank2_7: -242805611
       hank2_8: -2032960638

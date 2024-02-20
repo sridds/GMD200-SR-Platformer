@@ -222,7 +222,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void TryQueueJump()
     {
-        if (inRpgState || inputFrozen) return;
+        if (inRpgState || inputFrozen || GameManager.Instance.IsSignInteracting) return;
 
         // reset coyoteTime
         if (IsGrounded()) coyoteTimeCounter = _coyoteTime;

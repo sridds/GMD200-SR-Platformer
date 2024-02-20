@@ -6,6 +6,8 @@ public class Sign : MonoBehaviour
 {
     [SerializeField]
     private string[] _lines;
+    [SerializeField]
+    private float _cooldown = 0.5f;
 
     public delegate void SignHover();
     public static SignHover OnSignHover;
@@ -16,6 +18,24 @@ public class Sign : MonoBehaviour
     public delegate void SignExit();
     public static SignExit OnSignExit;
 
+    private Timer cooldownTimer = null;
+    private bool canInteract = false;
+
+    private void Update()
+    {
+        if (cooldownTimer != null) cooldownTimer.Tick(Time.deltaTime);
+
+        if (Input.GetKeyDown(KeyCode.Z) && canInteract)
+        {
+            OnSignInteract?.Invoke(_lines);
+            OnSignExit?.Invoke();
+            canInteract = false;
+
+            cooldownTimer = new Timer(_cooldown);
+            cooldownTimer.OnTimerEnd += () => { cooldownTimer = null; };
+        }
+    }
+
     /// <summary>
     /// Call the hover enter event
     /// </summary>
@@ -23,19 +43,10 @@ public class Sign : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag != "Player") return;
+        if (cooldownTimer != null) return;
 
         OnSignHover?.Invoke();
-    }
-
-    /// <summary>
-    /// Allow the player to interact with the sign
-    /// </summary>
-    /// <param name="collision"></param>
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag != "Player") return;
-
-        if (Input.GetKeyDown(KeyCode.Z)) OnSignInteract?.Invoke(_lines);
+        canInteract = true;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -43,5 +54,6 @@ public class Sign : MonoBehaviour
         if (collision.gameObject.tag != "Player") return;
 
         OnSignExit?.Invoke();
+        canInteract = false;
     }
 }
