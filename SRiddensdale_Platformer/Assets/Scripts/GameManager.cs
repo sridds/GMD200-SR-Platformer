@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
         Paused
     }
 
-    private const int RESULTS_SCENE_INDEX = 4;
+    private const int RESULTS_SCENE_INDEX = 5;
 
     // Instance reference
     public static GameManager Instance { get { return instance; } }
@@ -63,6 +63,8 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         SubscribeToEvents();
+
+        Time.timeScale = 1.0f;
     }
 
     private void SubscribeToEvents()
