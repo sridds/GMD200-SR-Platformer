@@ -11,8 +11,7 @@ public class GameManager : MonoBehaviour
         Paused
     }
 
-    [SerializeField]
-    private int _resultsSceneIndex;
+    private const int RESULTS_SCENE_INDEX = 3;
 
     // Instance reference
     public static GameManager Instance { get { return instance; } }
@@ -165,15 +164,19 @@ public class GameManager : MonoBehaviour
         TimePlaying += Time.deltaTime;
     }
 
-    public void ResultsScreen() => StartCoroutine(LoadScene(_resultsSceneIndex));
-    public void RestartLevel() => StartCoroutine(LoadScene(SceneManager.GetActiveScene().buildIndex));
+    public void ResultsScreen() {
+        StartCoroutine(LoadScene(RESULTS_SCENE_INDEX));
+    }
+
+    public void RestartLevel() {
+        StartCoroutine(LoadScene(SceneManager.GetActiveScene().buildIndex));
+    }
 
     private IEnumerator LoadScene(int index)
     {
         UnsubscribeEvents();
 
-        if (IsLevelComplete)
-        {
+        if (IsLevelComplete) {
             // add new level data with corresponding coins and build index
             PersistentData.AddNewData(Coins, SceneManager.GetActiveScene().buildIndex, TimePlaying);
         }
@@ -188,8 +191,7 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
 
-        if (index != SceneManager.GetActiveScene().buildIndex) DestroySelf();
-        else OnSceneLoad();
+        OnSceneLoad();
     }
 
     private void DestroySelf() => Destroy(gameObject, 0.01f);
