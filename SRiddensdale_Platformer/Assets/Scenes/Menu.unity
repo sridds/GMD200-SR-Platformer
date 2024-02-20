@@ -819,7 +819,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a42354c864ffd4fe8831d413dd53f18f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _waveAmplitude: {x: 0, y: 6}
+  _waveAmplitude: {x: 0, y: 8}
   _waveFrequency: {x: 0, y: 2}
   _target: {fileID: 1447563791}
 --- !u!95 &1447563795

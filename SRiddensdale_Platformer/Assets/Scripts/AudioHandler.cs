@@ -2,6 +2,7 @@ using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class AudioHandler : MonoBehaviour
 {
@@ -24,6 +25,9 @@ public class AudioHandler : MonoBehaviour
     [Header("References")]
     [SerializeField] private AudioSource musicSource;
     [SerializeField] private AudioSource soundPrefab;
+
+    [Header("Mix")]
+    [SerializeField] private AudioMixerGroup musicMix;
 
     // Holds a queue of music volume actions
     private Queue<IEnumerator> musicCoroutineQueue = new Queue<IEnumerator>();
@@ -184,6 +188,7 @@ public class AudioHandler : MonoBehaviour
         // Play the temp
         tempSource.volume = 0.0f;
         tempSource.clip = newTrack;
+        tempSource.outputAudioMixerGroup = musicMix;
         tempSource.Play();
 
         // Fade in the temp track

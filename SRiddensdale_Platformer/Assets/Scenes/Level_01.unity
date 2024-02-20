@@ -3835,8 +3835,8 @@ AudioSource:
   m_GameObject: {fileID: 1451418861}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 1a6bf3e5baa1c4265804fe1c8c9323dc, type: 3}
+  OutputAudioMixerGroup: {fileID: 1215352211299266545, guid: b4cc3ea0a7b3847fcb5e53396880b38c, type: 2}
+  m_audioClip: {fileID: 8300000, guid: 7ac4617583bd645069a355a29e4442a2, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -4777,10 +4777,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ebcb0de6713e4facbba7684fe867563, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bubbleTrack: {fileID: 8300000, guid: 0bdc50b5ac7744dbe813bfd6f1e995e5, type: 3}
-  stageTheme: {fileID: 8300000, guid: 1a6bf3e5baa1c4265804fe1c8c9323dc, type: 3}
+  bubbleTrack: {fileID: 8300000, guid: 8db350460807b44a6836fb4655231ab9, type: 3}
+  stageTheme: {fileID: 8300000, guid: 7ac4617583bd645069a355a29e4442a2, type: 3}
   musicSource: {fileID: 1451418862}
   soundPrefab: {fileID: 1772967812775894131, guid: 57ed9cfb5cad24f2db0deab5d248c101, type: 3}
+  musicMix: {fileID: 1215352211299266545, guid: b4cc3ea0a7b3847fcb5e53396880b38c, type: 2}
 --- !u!4 &1848873199
 Transform:
   m_ObjectHideFlags: 0
